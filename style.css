@@ -98,22 +98,61 @@ body {
 }
 
 /* MAP */
-.map img {
+.map {
     width: 100%;
-    border-radius: 12px;
-    margin-top: 1.5rem;
+    height: 300px;
 }
 
+.map iframe {
+    width: 100%;
+    height: 100%;
+}
 /* TIMELINE */
+/* TIMELINE – pontok + függőleges vonal */
 .timeline {
     list-style: none;
-    max-width: 400px;
+    max-width: 420px;
     margin: auto;
+    padding-left: 2rem;
+    position: relative;
+}
+
+.timeline::before {
+    content: "";
+    position: absolute;
+    left: 14px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: linear-gradient(
+        to bottom,
+        var(--gold),
+        rgba(201, 164, 76, 0.2)
+    );
 }
 
 .timeline li {
-    margin-bottom: 1rem;
+    position: relative;
+    padding: 0.2rem 0 2rem 2rem;
+    font-size: 1rem;
 }
+
+.timeline li::before {
+    content: "";
+    position: absolute;
+    left: -2px;
+    top: 0.4rem;
+    width: 14px;
+    height: 14px;
+    background: var(--gold);
+    border-radius: 50%;
+    box-shadow: 0 0 0 4px rgba(201, 164, 76, 0.2);
+}
+
+.timeline li:last-child {
+    padding-bottom: 0;
+}
+
 
 /* MENU */
 .menu {
