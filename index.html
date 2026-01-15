@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Esküvőnk</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<header class="hero">
+    <div class="hero-content">
+        <h1>Kriszti & Tomi</h1>
+        <p>2026. október 24.</p>
+    </div>
+</header>
+
+<nav class="nav">
+    <a href="#helyszin">Helyszín</a>
+    <a href="#menetrend">Menetrend</a>
+    <a href="#menu">Menü</a>
+</nav>
+
+<section id="helyszin" class="section">
+    <h2>Helyszín</h2>
+    <p>
+        Tündérfarm<br />
+        1234 Zirc-Tündérmajor, Farm utca 1.
+    </p>
+
+    <div class="map">
+        <!-- Ide később be lehet tenni valódi térképet -->
+        <img src="https://via.placeholder.com/800x400?text=Térkép+helye" alt="Térkép">
+    </div>
+</section>
+
+<section id="menetrend" class="section alt">
+    <h2>Menetrend</h2>
+    <ul class="timeline">
+        <li><strong>15:00</strong> – Vendégvárás</li>
+        <li><strong>16:00</strong> – Szertartás</li>
+        <li><strong>17:00</strong> – Gratuláció, fotózás</li>
+        <li><strong>18:30</strong> – Vacsora</li>
+        <li><strong>20:00</strong> – Nyitótánc & buli</li>
+    </ul>
+</section>
+
+<section id="menu" class="section">
+    <h2>Menü</h2>
+    <div class="menu">
+        <div>
+            <h3>Előétel</h3>
+            <p>Libamáj terrine, őszi gyümölcsökkel</p>
+        </div>
+        <div>
+            <h3>Főétel</h3>
+            <p>Rozmaringos kacsamell, sütőtökpüré</p>
+        </div>
+        <div>
+            <h3>Desszert</h3>
+            <p>Diós-mézes torta, aranyporral</p>
+        </div>
+    </div>
+</section>
+
+<section id="visszaigazolas" class="section alt">
+    <h2>Visszaigazolás</h2>
+
+    <form class="rsvp-form"
+          action="mailto:tolditamass98@gmail.com"
+          method="POST"
+          enctype="text/plain">
+
+        <label>
+            Név*
+            <input type="text" name="Név" required>
+        </label>
+
+        <label>
+            Email cím*
+            <input type="email" name="Email" required>
+        </label>
+
+        <label>
+            Részt veszek az esküvőn*
+            <select name="Részvétel" required>
+                <option value="">Válassz</option>
+                <option value="Igen">Igen, jövök</option>
+                <option value="Nem">Sajnos nem tudok jönni</option>
+            </select>
+        </label>
+
+        <label>
+            Hány fővel érkezel?
+            <select name="Létszám">
+                <option value="1">1 fő</option>
+                <option value="2">2 fő</option>
+                <option value="3">3 fő</option>
+                <option value="4">4 fő</option>
+            </select>
+        </label>
+
+        <label class="checkbox">
+            <input type="checkbox" name="Plusz vendég" value="Igen">
+            Plusz vendéget hozok
+        </label>
+
+        <label>
+            Ételallergia / egyéb megjegyzés
+            <textarea name="Allergia / Megjegyzés" rows="4"></textarea>
+        </label>
+
+        <button type="submit">Visszaigazolás elküldése</button>
+    </form>
+</section>
+
+
+<footer class="footer">
+    <p>Szeretettel várunk Benneteket 🤍</p>
+</footer>
+
+</body>
+</html>
