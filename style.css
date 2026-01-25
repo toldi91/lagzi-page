@@ -46,6 +46,41 @@ body {
     margin-top: 1rem;
 }
 
+.hero-name {
+    opacity: 0;
+    transform: translateY(30px);
+    animation: nameIn 1.6s ease forwards;
+}
+
+.hero-date {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: dateIn 1.2s ease forwards;
+    animation-delay: 1.4s;
+}
+
+@keyframes nameIn {
+    0% {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes dateIn {
+    0% {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 /* NAV */
 .nav {
     position: sticky;
@@ -107,52 +142,189 @@ body {
     width: 100%;
     height: 100%;
 }
-/* TIMELINE */
-/* TIMELINE – pontok + függőleges vonal */
+
+
+/* KÖZÉPRE IGAZÍTOTT TIMELINE */
 .timeline {
-    list-style: none;
-    max-width: 420px;
-    margin: auto;
-    padding-left: 2rem;
     position: relative;
+    max-width: 900px;
+    margin: 4rem auto;
+    padding: 0;
+    list-style: none;
 }
 
+/* KÖZÉPSŐ FÜGGŐLEGES VONAL */
 .timeline::before {
     content: "";
     position: absolute;
-    left: 14px;
     top: 0;
     bottom: 0;
+    left: 50%;
     width: 2px;
     background: linear-gradient(
         to bottom,
         var(--gold),
         rgba(201, 164, 76, 0.2)
     );
+    transform: translateX(-50%);
 }
 
+/* EGY ESEMÉNY */
 .timeline li {
     position: relative;
-    padding: 0.2rem 0 2rem 2rem;
+    width: 50%;
+    padding: 1.5rem 2rem;
+    box-sizing: border-box;
+}
+
+/* BAL OLDALI ESEMÉNY */
+.timeline li:nth-child(odd) {
+    left: 0;
+    text-align: right;
+}
+
+/* JOBB OLDALI ESEMÉNY */
+.timeline li:nth-child(even) {
+    left: 50%;
+    text-align: left;
+}
+
+/* TARTALOM DOBOZ */
+.timeline .content {
+    background: white;
+    padding: 1rem 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+    display: inline-block;
+    max-width: 320px;
+}
+
+.timeline .content strong {
+    color: var(--bordo);
+    font-size: 1.05rem;
+}
+
+.timeline .content p {
+    margin-top: 0.3rem;
+    font-size: 0.95rem;
+}
+
+/* IKON */
+.timeline .icon {
+    position: absolute;
+    top: 1.8rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 46px;
+    height: 46px;
+    background: var(--gold);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 0 6px rgba(201, 164, 76, 0.25);
+    z-index: 2;
+}
+
+.timeline .icon svg {
+    width: 22px;
+    height: 22px;
+    fill: white;
+}
+
+
+
+/* MOBIL NÉZET */
+@media (max-width: 700px) {
+    .timeline::before {
+        left: 20px;
+    }
+
+    .timeline li {
+        width: 100%;
+        padding-left: 60px;
+        padding-right: 1rem;
+        left: 0 !important;
+        text-align: left;
+        margin-bottom: 2rem;
+    }
+
+    .timeline .icon {
+        left: 20px;
+        transform: translateX(0);
+    }
+
+    .timeline .content {
+        max-width: 100%;
+    }
+}
+
+
+
+/* DRESSZKÓD */
+.dresscode-text {
+    max-width: 650px;
+    margin: 0 auto 2.5rem;
+    text-align: center;
+    line-height: 1.7;
     font-size: 1rem;
 }
 
-.timeline li::before {
-    content: "";
-    position: absolute;
-    left: -2px;
-    top: 0.4rem;
-    width: 14px;
-    height: 14px;
-    background: var(--gold);
+.color-palette {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 2rem;
+}
+
+.color-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 0.9rem;
+}
+
+.color-circle {
+    width: 48px;
+    height: 48px;
     border-radius: 50%;
-    box-shadow: 0 0 0 4px rgba(201, 164, 76, 0.2);
+    margin-bottom: 0.5rem;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    border: 2px solid rgba(255, 255, 255, 0.6);
 }
 
-.timeline li:last-child {
-    padding-bottom: 0;
+/* SZÍNEK */
+.color-circle.gold {
+    background: linear-gradient(135deg, #e0c36b, #c9a44c);
 }
 
+.color-circle.chocolate{
+    background: #713600;
+}
+
+.color-circle.olive-green {
+    background: #BAC095;
+}
+
+.color-circle.bronzer {
+    background: #cd7f32;
+}
+
+.color-circle.green {
+    background: #266F46;
+}
+
+.color-circle.rose-gold{
+    background: #DEA193;
+}
+
+.color-circle.rose-gold2{
+    background: #694C45;
+}
+
+.color-circle.beige {
+    background: #EED9C4;
+}
 
 /* MENU */
 .menu {
