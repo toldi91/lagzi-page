@@ -23,23 +23,23 @@
     <a href="#visszaigazolas">Visszaigazolás</a>
 </nav>
 
-<section id="helyszin" class="section">
-    <h2>Helyszín</h2>
-    <p>
+<section id="helyszin" class="section reveal">
+    <h2 class="reveal">Helyszín</h2>
+    <p class="reveal">
         Tündér Farm<br />
         18420 Zirc, Esterházy utca 18.
     </p>
     <br />
-    <div class="map">
+    <div class="map reveal">
         <!-- Ide később be lehet tenni valódi térképet -->
         <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d8730.476545728694!2d17.836229220800202!3d47.259677237630264!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47698023adbbb573%3A0x5b4cfd98f75e82a8!2zVMO8bmTDqXIgRmFybQ!5e0!3m2!1shu!2shu!4v1768507834643!5m2!1shu!2shu" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
     </div>
 </section>
 
-<section id="menetrend" class="section alt">
-    <h2>Menetrend</h2>
+<section id="menetrend" class="section alt reveal">
+    <h2 class="reveal">Menetrend</h2>
     <ul class="timeline">
-    <li>
+    <li class="reveal">
         <span class="icon">
             <!-- Vendégvárás -->
             <svg viewBox="0 0 24 24" aria-hidden="true">
@@ -52,7 +52,7 @@
         </div>
     </li>
 
-    <li>
+    <li class="reveal">
         <span class="icon">
             <!-- Szertartás (gyűrűk) -->
             <svg viewBox="0 0 24 24" aria-hidden="true">
@@ -66,7 +66,7 @@
         </div>
     </li>
 
-    <li>
+    <li class="reveal">
         <span class="icon">
             <!-- Fotózás -->
             <svg viewBox="0 0 24 24" aria-hidden="true">
@@ -80,7 +80,7 @@
         </div>
     </li>
 
-    <li>
+    <li class="reveal">
         <span class="icon">
             <!-- Vacsora (evőeszközök) -->
             <svg viewBox="0 0 24 24" aria-hidden="true">
@@ -95,7 +95,7 @@
         </div>
     </li>
 
-    <li>
+    <li class="reveal">
         <span class="icon">
             <!-- Zene / buli -->
             <svg viewBox="0 0 24 24" aria-hidden="true">
@@ -112,17 +112,17 @@
 
 </section>
 
-<section id="dresscode" class="section alt">
-    <h2>Dress code</h2>
+<section id="dresscode" class="section alt reveal">
+    <h2 class="reveal">Dress code</h2>
 
-    <p class="dresscode-text">
+    <p class="dresscode-text reveal">
         Szeretettel kérünk Benneteket, hogy az esküvő hangulatához illeszkedve
         <strong>business casual</strong> stílusú öltözetben érkezzetek.
         Örülnénk, ha ruhaválasztásotokkal az alábbi,
         természetes és őszi színvilágot erősítenétek.
     </p>
 
-    <div class="color-palette">
+    <div class="color-palette reveal">
         <div class="color-item">
             <span class="color-circle gold"></span>
         </div>
@@ -150,9 +150,9 @@
     </div>
 </section>
 
-<section id="menu" class="section">
-    <h2>Menü</h2>
-    <div class="menu">
+<section id="menu" class="section reveal">
+    <h2 class="reveal">Menü</h2>
+    <div class="menu reveal">
         <div>
             <h3>Előétel</h3>
             <p>Tyúkhúsleves</p>
@@ -168,10 +168,10 @@
     </div>
 </section>
 
-<section id="visszaigazolas" class="section alt">
-    <h2>Visszaigazolás</h2>
+<section id="visszaigazolas" class="section alt reveal">
+    <h2 class="reveal">Visszaigazolás</h2>
 
-    <form class="rsvp-form"
+    <form class="rsvp-form reveal"
           action="mailto:tolditamass98@gmail.com"
           method="POST"
           enctype="text/plain">
@@ -218,6 +218,36 @@
 <footer class="footer">
     <p>Szeretettel várunk Benneteket 🤍</p>
 </footer>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    const reveals = document.querySelectorAll(".reveal");
+
+    const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add("visible");
+                observer.unobserve(entry.target);
+            }
+        });
+    }, {
+        threshold: 0.15,
+        rootMargin: "0px 0px -50px 0px"
+    });
+
+    reveals.forEach(el => {
+        observer.observe(el);
+
+        // Ha már látszik betöltéskor, akkor is animáljuk
+        const rect = el.getBoundingClientRect();
+        if (rect.top < window.innerHeight) {
+            el.classList.add("visible");
+            observer.unobserve(el);
+        }
+    });
+});
+</script>
+
 
 </body>
 </html>

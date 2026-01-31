@@ -27,7 +27,7 @@ body {
             rgba(122, 31, 43, 0.6),
             rgba(122, 31, 43, 0.6)
         ),
-        url("https://via.placeholder.com/1600x900?text=Őszi+esküvő") center / cover;
+        center / cover;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -425,3 +425,17 @@ body {
     background: var(--gold);
     color: #333;
 }
+
+/* SCROLL ANIMÁCIÓ ALAP */
+.reveal {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 1s ease, transform 1s ease;
+    will-change: opacity, transform;
+}
+
+.reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
