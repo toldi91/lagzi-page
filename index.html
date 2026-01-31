@@ -108,8 +108,15 @@
         </div>
     </li>
 </ul>
+</section>
 
-
+<section id="naszajandek" class="section reveal">
+    <h2 class="reveal">Nászajándék</h2>
+    <p class="reveal">A legnagyobb ajándék számunkra az, ha velünk ünnepeltek.🫶🏻</p><br>
+    <p class="reveal">Ha mégis szeretnétek hozzájárulni a boldogságunkhoz, egy 
+        kis „úti hozzájárulás” sokat segít abban, hogy a nászutunkon átszelhessük az óceánt. 🌍✈️
+    </p><br>
+    <p class="reveal">Köszönjük! 💫</p>
 </section>
 
 <section id="dresscode" class="section alt reveal">
@@ -169,49 +176,22 @@
 </section>
 
 <section id="visszaigazolas" class="section alt reveal">
-    <h2 class="reveal">Visszaigazolás</h2>
+    <h2 class="reveal">Visszajelzés</h2>
 
-    <form class="rsvp-form reveal"
-          action="mailto:tolditamass98@gmail.com"
-          method="POST"
-          enctype="text/plain">
+    <div class="rsvp-simple reveal">
+        <p class="rsvp-question">
+            Kérjük, az alábbi gombok segítségével jelezd részvételedet.<br>
+            Határidő: szeptember 01., hogy időben tudjuk leadni a végleges létszámot. ✨
+        </p>
 
-        <label>
-            Név*
-            <input type="text" name="Név" required>
-        </label>
+        <div class="rsvp-buttons">
+            <button class="rsvp-btn yes" onclick="showForm(true)">Igen, ott leszek</button>
+            <button class="rsvp-btn no" onclick="showForm(false)">Sajnos nem tudok menni</button>
+        </div>
 
-        <label>
-            Email cím*
-            <input type="email" name="Email" required>
-        </label>
-
-        <label>
-            Részt veszek az esküvőn*
-            <select name="Részvétel" required>
-                <option value="">Válassz</option>
-                <option value="Igen">Igen, jövök</option>
-                <option value="Nem">Sajnos nem tudok jönni</option>
-            </select>
-        </label>
-
-        <label>
-            Hány fővel érkezel?
-            <select name="Létszám">
-                <option value="1">1 fő</option>
-                <option value="2">2 fő</option>
-                <option value="3">3 fő</option>
-                <option value="4">4 fő</option>
-            </select>
-        </label>
-
-        <label>
-            Ételallergia / egyéb megjegyzés
-            <textarea name="Allergia / Megjegyzés" rows="4"></textarea>
-        </label>
-
-        <button type="submit">Visszaigazolás elküldése</button>
-    </form>
+        <!-- Google Formok helye -->
+        <div id="form-container" style="margin-top:2rem;"></div>
+    </div>
 </section>
 
 
@@ -246,6 +226,25 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 });
+
+function showForm(isComing) {
+    const container = document.getElementById("form-container");
+    container.innerHTML = ""; // előző form törlése
+
+    let formEmbed = "";
+
+    if (isComing) {
+        // Igen → részt vesz
+        formEmbed = `<iframe src="https://docs.google.com/forms/d/e/1FAIpQLSeOEfwvRcQtsM5D7jp4TaJ4_0VbNjcPWsNgESJNdr9wNfSqYg/viewform?embedded=true" 
+            width="640" height="1206" frameborder="0" marginheight="0" marginwidth="0">Betöltés…</iframe>`;
+    } else {
+        // Nem → nem tud jönni
+        formEmbed = `<iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdmqlZdZB9KO__K5Az1ecDVWf3_HaU9Bh6EQGuNWELk-7fsuw/viewform?embedded=true" 
+            width="640" height="551" frameborder="0" marginheight="0" marginwidth="0">Betöltés…</iframe>`
+    }
+
+    container.innerHTML = formEmbed;
+    }
 </script>
 
 
