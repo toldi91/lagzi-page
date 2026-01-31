@@ -132,17 +132,29 @@ body {
     margin: 1rem auto;
 }
 
+#helyszin .helyszin_nev{
+    text-align: center;
+    font-size: 22px;
+    margin-bottom: 12px;
+}
+
+#helyszin .helyszin_cim{
+    text-align: center;
+}
+
 /* MAP */
 .map {
     width: 100%;
     height: 300px;
+    border-radius: 20px;       /* lekerekített sarkok */
+    overflow: hidden;  
+    box-shadow: 0 10px 25px rgba(0,0,0,0.3); /* puha, finom árnyék */
 }
 
 .map iframe {
     width: 100%;
     height: 100%;
 }
-
 
 /* KÖZÉPRE IGAZÍTOTT TIMELINE */
 .timeline {
