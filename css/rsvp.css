@@ -7,6 +7,12 @@
 .rsvp-question {
     font-size: 1.1rem;
     line-height: 1.7;
+    margin-bottom: 0.6rem;
+}
+
+.rsvp-deadline {
+    font-size: 1.05rem;
+    line-height: 1.6;
     margin-bottom: 2rem;
 }
 
@@ -47,7 +53,7 @@
     position: relative;
     width: 100%;
     max-width: 600px;
-    margin: auto;
+    margin: 2rem auto 0;
     overflow: hidden;
 }
 

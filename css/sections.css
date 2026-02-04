@@ -24,3 +24,7 @@
     background: var(--gold);
     margin: 1rem auto;
 }
+
+.section-text {
+    margin: 0.75rem 0;
+}

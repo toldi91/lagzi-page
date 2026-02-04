@@ -4,6 +4,20 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     window.scrollTo({ top: 0, left: 0, behavior: "auto" });
 
+    const sections = document.querySelectorAll("main .section");
+    const skipTags = new Set(["svg", "path", "circle", "rect", "line", "polyline", "polygon"]);
+    sections.forEach(section => {
+        section.querySelectorAll("*").forEach(el => {
+            if (skipTags.has(el.tagName.toLowerCase())) {
+                return;
+            }
+            if (el.closest(".icon")) {
+                return;
+            }
+            el.classList.add("reveal");
+        });
+    });
+
     const reveals = document.querySelectorAll(".reveal");
 
     const observer = new IntersectionObserver((entries, observerInstance) => {

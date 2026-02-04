@@ -6,6 +6,14 @@
     font-size: 1rem;
 }
 
+.dresscode-text p {
+    margin: 0 0 0.9rem;
+}
+
+.dresscode-text p:last-child {
+    margin-bottom: 0;
+}
+
 .color-palette {
     display: flex;
     justify-content: center;
