@@ -15,12 +15,20 @@
     </div>
 </header>
 
-<nav class="nav">
-    <a href="#helyszin">Helyszín</a>
-    <a href="#menetrend">Menetrend</a>
-    <a href="#dresscode">Dress code</a>
-    <a href="#menu">Menü</a>
-    <a href="#visszaigazolas">Visszaigazolás</a>
+<nav class="nav" id="main-nav">
+    <button class="nav-toggle" aria-expanded="false" aria-controls="nav-links">
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+    </button>
+    <div class="nav-links" id="nav-links">
+        <a href="#helyszin">Helyszín</a>
+        <a href="#menetrend">Menetrend</a>
+        <a href="#naszajandek">Nászajándék</a>
+        <a href="#dresscode">Dress code</a>
+        <a href="#menu">Menü</a>
+        <a href="#visszaigazolas">Visszaigazolás</a>
+    </div>
 </nav>
 
 <section id="helyszin" class="section reveal">
@@ -46,7 +54,10 @@
         <span class="icon">
             <!-- Vendégvárás -->
             <svg viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M7 2h10v4a5 5 0 0 1-4 4.9V18h3v2H8v-2h3v-7.1A5 5 0 0 1 7 6V2z"/>
+                <path d="M6 7h12v2H6z"/>
+                <path d="M8 9h8v7a4 4 0 0 1-8 0z"/>
+                <circle cx="9.5" cy="12" r="0.8"/>
+                <circle cx="14.5" cy="12" r="0.8"/>
             </svg>
         </span>
         <div class="content">
@@ -59,8 +70,9 @@
         <span class="icon">
             <!-- Szertartás (gyűrűk) -->
             <svg viewBox="0 0 24 24" aria-hidden="true">
-                <circle cx="10" cy="14" r="5"/>
-                <circle cx="14" cy="10" r="5"/>
+                <circle cx="9.5" cy="12.5" r="4.5"/>
+                <circle cx="14.5" cy="12.5" r="4.5"/>
+                <circle cx="12" cy="12.5" r="1"/>
             </svg>
         </span>
         <div class="content">
@@ -73,8 +85,9 @@
         <span class="icon">
             <!-- Fotózás -->
             <svg viewBox="0 0 24 24" aria-hidden="true">
-                <rect x="3" y="7" width="18" height="12" rx="2"/>
-                <circle cx="12" cy="13" r="4"/>
+                <rect x="4" y="8" width="16" height="10" rx="2"/>
+                <rect x="8" y="6" width="4" height="2" rx="1"/>
+                <circle cx="12" cy="13" r="3.2"/>
             </svg>
         </span>
         <div class="content">
@@ -87,9 +100,10 @@
         <span class="icon">
             <!-- Vacsora (evőeszközök) -->
             <svg viewBox="0 0 24 24" aria-hidden="true">
-                <rect x="5" y="2" width="2" height="20"/>
-                <rect x="10" y="2" width="2" height="9"/>
-                <rect x="17" y="2" width="2" height="20"/>
+                <rect x="6" y="3" width="2" height="18"/>
+                <rect x="10" y="3" width="2" height="6"/>
+                <rect x="13" y="3" width="2" height="6"/>
+                <rect x="16" y="3" width="2" height="18"/>
             </svg>
         </span>
         <div class="content">
@@ -102,7 +116,8 @@
         <span class="icon">
             <!-- Zene / buli -->
             <svg viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M10 3v12.5a3.5 3.5 0 1 0 2 3.2V7h7V3h-9z"/>
+                <path d="M9 4v12.5a3.5 3.5 0 1 0 2 3.2V8h7V4H9z"/>
+                <circle cx="8.5" cy="19" r="1.2"/>
             </svg>
         </span>
         <div class="content">
@@ -205,7 +220,13 @@
 
 <script>
 document.addEventListener("DOMContentLoaded", () => {
+    if ("scrollRestoration" in history) {
+        history.scrollRestoration = "manual";
+    }
+    window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+
     const reveals = document.querySelectorAll(".reveal");
+    const firstSection = document.getElementById("helyszin");
 
     const observer = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
@@ -218,6 +239,26 @@ document.addEventListener("DOMContentLoaded", () => {
         threshold: 0.15,
         rootMargin: "0px 0px -50px 0px"
     });
+
+    const nav = document.getElementById("main-nav");
+    const navToggle = nav.querySelector(".nav-toggle");
+    const navLinks = nav.querySelectorAll(".nav-links a");
+
+    navToggle.addEventListener("click", () => {
+        const isOpen = nav.classList.toggle("open");
+        navToggle.setAttribute("aria-expanded", isOpen ? "true" : "false");
+        document.body.classList.toggle("menu-open", isOpen);
+    });
+
+    navLinks.forEach(link => {
+        link.addEventListener("click", () => {
+            nav.classList.remove("open");
+            navToggle.setAttribute("aria-expanded", "false");
+            document.body.classList.remove("menu-open");
+        });
+    });
+
+    void firstSection;
 
     reveals.forEach(el => {
         observer.observe(el);
@@ -240,11 +281,11 @@ function showForm(isComing) {
     if (isComing) {
         // Igen → részt vesz
         formEmbed = `<iframe src="https://docs.google.com/forms/d/e/1FAIpQLSeOEfwvRcQtsM5D7jp4TaJ4_0VbNjcPWsNgESJNdr9wNfSqYg/viewform?embedded=true" 
-            width="640" height="1206" frameborder="0" marginheight="0" marginwidth="0">Betöltés…</iframe>`;
+            height="1206" frameborder="0" marginheight="0" marginwidth="0">Betöltés…</iframe>`;
     } else {
         // Nem → nem tud jönni
         formEmbed = `<iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdmqlZdZB9KO__K5Az1ecDVWf3_HaU9Bh6EQGuNWELk-7fsuw/viewform?embedded=true" 
-            width="640" height="551" frameborder="0" marginheight="0" marginwidth="0">Betöltés…</iframe>`
+            height="551" frameborder="0" marginheight="0" marginwidth="0">Betöltés…</iframe>`
     }
 
     container.innerHTML = formEmbed;

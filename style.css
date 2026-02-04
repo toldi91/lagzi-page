@@ -20,6 +20,10 @@ body {
     color: #333;
 }
 
+body.menu-open {
+    overflow: hidden;
+}
+
 /* HERO */
 .hero {
     height: 100vh;
@@ -87,11 +91,16 @@ body {
     top: 0;
     background: white;
     display: flex;
+    align-items: center;
     justify-content: center;
-    gap: 2rem;
     padding: 1rem;
     border-bottom: 1px solid #eee;
     z-index: 100;
+}
+
+.nav-links {
+    display: flex;
+    gap: 2rem;
 }
 
 .nav a {
@@ -102,6 +111,27 @@ body {
 
 .nav a:hover {
     color: var(--gold);
+}
+
+.nav-toggle {
+    display: none;
+    background: transparent;
+    border: 0;
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    cursor: pointer;
+    position: relative;
+    z-index: 120;
+}
+
+.nav-toggle-bar {
+    display: block;
+    width: 26px;
+    height: 2px;
+    margin: 6px auto;
+    background: var(--bordo);
+    transition: transform 0.3s ease, opacity 0.3s ease;
 }
 
 /* SECTIONS */
@@ -156,57 +186,64 @@ body {
     height: 100%;
 }
 
-/* KÖZÉPRE IGAZÍTOTT TIMELINE */
+/* BALRA IGAZÍTOTT TIMELINE */
 .timeline {
     position: relative;
     max-width: 900px;
     margin: 4rem auto;
     padding: 0;
     list-style: none;
+    --content-x: 50%;
+    --gap: 32px;
+    --icon-size: 46px;
+    --icon-top: 50%;
+    --dot-size: 8px;
+    --line-x: calc(var(--content-x) - var(--gap));
 }
 
-/* KÖZÉPSŐ FÜGGŐLEGES VONAL */
+/* BAL OLDALI FÜGGŐLEGES VONAL */
 .timeline::before {
     content: "";
     position: absolute;
     top: 0;
     bottom: 0;
-    left: 50%;
+    left: var(--line-x);
     width: 2px;
     background: linear-gradient(
         to bottom,
         var(--gold),
         rgba(201, 164, 76, 0.2)
     );
-    transform: translateX(-50%);
 }
 
 /* EGY ESEMÉNY */
 .timeline li {
     position: relative;
-    width: 50%;
-    padding: 1.5rem 2rem;
+    width: 100%;
+    padding: 1.5rem 1.5rem 1.5rem var(--content-x);
     box-sizing: border-box;
-}
-
-/* BAL OLDALI ESEMÉNY */
-.timeline li:nth-child(odd) {
-    left: 0;
-    text-align: right;
-}
-
-/* JOBB OLDALI ESEMÉNY */
-.timeline li:nth-child(even) {
-    left: 50%;
     text-align: left;
+    display: flex;
+    align-items: center;
+}
+
+/* PONT A VONALON */
+.timeline li::before {
+    content: "";
+    position: absolute;
+    left: var(--line-x);
+    top: calc(var(--icon-top) - (var(--dot-size) / 2));
+    width: var(--dot-size);
+    height: var(--dot-size);
+    background: var(--gold);
+    border-radius: 50%;
+    transform: translateX(-50%);
+    box-shadow: 0 0 0 4px rgba(201, 164, 76, 0.2);
 }
 
 /* TARTALOM DOBOZ */
 .timeline .content {
-    background: white;
-    padding: 1rem 1.5rem;
-    border-radius: 12px;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+    padding: 0.2rem 0;
     display: inline-block;
     max-width: 320px;
 }
@@ -214,6 +251,7 @@ body {
 .timeline .content strong {
     color: var(--bordo);
     font-size: 1.05rem;
+    white-space: nowrap;
 }
 
 .timeline .content p {
@@ -224,11 +262,11 @@ body {
 /* IKON */
 .timeline .icon {
     position: absolute;
-    top: 1.8rem;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 46px;
-    height: 46px;
+    top: var(--icon-top);
+    left: calc(var(--line-x) - var(--gap) - (var(--icon-size) / 2));
+    transform: translate(-50%, -50%);
+    width: var(--icon-size);
+    height: var(--icon-size);
     background: var(--gold);
     border-radius: 50%;
     display: flex;
@@ -248,22 +286,26 @@ body {
 
 /* MOBIL NÉZET */
 @media (max-width: 700px) {
+    .timeline {
+        --content-x: 50%;
+        --gap: 26px;
+    }
+
     .timeline::before {
-        left: 20px;
+        left: var(--line-x);
     }
 
     .timeline li {
         width: 100%;
-        padding-left: 60px;
+        padding-left: calc(var(--line-x) + var(--gap));
         padding-right: 1rem;
-        left: 0 !important;
         text-align: left;
         margin-bottom: 2rem;
     }
 
     .timeline .icon {
-        left: 20px;
-        transform: translateX(0);
+        left: calc(var(--line-x) - var(--gap) - (var(--icon-size) / 2));
+        transform: translate(-50%, -50%);
     }
 
     .timeline .content {
@@ -456,10 +498,45 @@ body {
     }
 
     .nav {
-        flex-wrap: wrap;
-        gap: 1rem;
+        justify-content: space-between;
+        padding: 0.75rem 1rem;
+    }
+
+    .nav-toggle {
+        display: block;
+    }
+
+    .nav-links {
+        position: fixed;
+        inset: 0;
+        background: var(--cream);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 1.5rem;
+        opacity: 0;
+        pointer-events: none;
+        transform: translateY(-12px);
+        transition: opacity 0.3s ease, transform 0.3s ease;
+        z-index: 110;
+    }
+
+    .nav.open .nav-links {
+        opacity: 1;
+        pointer-events: auto;
+        transform: translateY(0);
+    }
+
+    .nav.open .nav-toggle-bar:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+    }
+
+    .nav.open .nav-toggle-bar:nth-child(2) {
+        opacity: 0;
+    }
+
+    .nav.open .nav-toggle-bar:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
     }
 }
-
-
-
