@@ -1,0 +1,11 @@
+.menu {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 2rem;
+    text-align: center;
+}
+
+.menu h3 {
+    color: var(--gold);
+    margin-bottom: 0.5rem;
+}

@@ -1,0 +1,26 @@
+.section {
+    padding: 4rem 1.5rem;
+    max-width: 900px;
+    margin: auto;
+    animation: fadeInUp 0.8s ease both;
+}
+
+.section.alt {
+    background: white;
+}
+
+.section h2 {
+    color: var(--bordo);
+    margin-bottom: 2rem;
+    text-align: center;
+    position: relative;
+}
+
+.section h2::after {
+    content: "";
+    display: block;
+    width: 60px;
+    height: 2px;
+    background: var(--gold);
+    margin: 1rem auto;
+}

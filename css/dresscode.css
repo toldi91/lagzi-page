@@ -1,0 +1,62 @@
+.dresscode-text {
+    max-width: 650px;
+    margin: 0 auto 2.5rem;
+    text-align: center;
+    line-height: 1.7;
+    font-size: 1rem;
+}
+
+.color-palette {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 2rem;
+}
+
+.color-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 0.9rem;
+}
+
+.color-circle {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    margin-bottom: 0.5rem;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    border: 2px solid rgba(255, 255, 255, 0.6);
+}
+
+.color-circle.gold {
+    background: linear-gradient(135deg, #e0c36b, #c9a44c);
+}
+
+.color-circle.chocolate {
+    background: #713600;
+}
+
+.color-circle.olive-green {
+    background: #BAC095;
+}
+
+.color-circle.bronzer {
+    background: #cd7f32;
+}
+
+.color-circle.green {
+    background: #266F46;
+}
+
+.color-circle.rose-gold {
+    background: #DEA193;
+}
+
+.color-circle.rose-gold2 {
+    background: #694C45;
+}
+
+.color-circle.beige {
+    background: #EED9C4;
+}

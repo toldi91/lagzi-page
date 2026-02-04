@@ -1,0 +1,58 @@
+.rsvp-simple {
+    text-align: center;
+    max-width: 600px;
+    margin: auto;
+}
+
+.rsvp-question {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    margin-bottom: 2rem;
+}
+
+.rsvp-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.rsvp-btn {
+    padding: 0.9rem 1.8rem;
+    border-radius: 40px;
+    border: none;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: inherit;
+}
+
+.rsvp-btn.yes {
+    background: var(--bordo);
+    color: white;
+}
+
+.rsvp-btn.no {
+    background: white;
+    color: var(--bordo);
+    border: 2px solid var(--bordo);
+}
+
+.rsvp-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 18px rgba(0,0,0,0.15);
+}
+
+#form-container {
+    position: relative;
+    width: 100%;
+    max-width: 600px;
+    margin: auto;
+    overflow: hidden;
+}
+
+#form-container iframe {
+    width: 100% !important;
+    min-width: 300px;
+    border: 0;
+}

@@ -1,0 +1,25 @@
+:root {
+    --bordo: #7a1f2b;
+    --gold: #c9a44c;
+    --cream: #f9f6f2;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: "Georgia", serif;
+    background: var(--cream);
+    color: #333;
+}
+
+body.menu-open {
+    overflow: hidden;
+}

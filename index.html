@@ -4,7 +4,18 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Esküvőnk</title>
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="css/global.css" />
+    <link rel="stylesheet" href="css/animations.css" />
+    <link rel="stylesheet" href="css/hero.css" />
+    <link rel="stylesheet" href="css/nav.css" />
+    <link rel="stylesheet" href="css/sections.css" />
+    <link rel="stylesheet" href="css/helyszin.css" />
+    <link rel="stylesheet" href="css/menetrend.css" />
+    <link rel="stylesheet" href="css/naszajandek.css" />
+    <link rel="stylesheet" href="css/dresscode.css" />
+    <link rel="stylesheet" href="css/menu.css" />
+    <link rel="stylesheet" href="css/rsvp.css" />
+    <link rel="stylesheet" href="css/footer.css" />
 </head>
 <body>
 
@@ -31,6 +42,7 @@
     </div>
 </nav>
 
+<main class="page-content">
 <section id="helyszin" class="section reveal">
     <h2 class="reveal">Helyszín</h2>
     <p class="helyszin_nev reveal">Tündér Farm</p>
@@ -217,80 +229,9 @@
 <footer class="footer">
     <p>Szeretettel várunk Benneteket 🤍</p>
 </footer>
+</main>
 
-<script>
-document.addEventListener("DOMContentLoaded", () => {
-    if ("scrollRestoration" in history) {
-        history.scrollRestoration = "manual";
-    }
-    window.scrollTo({ top: 0, left: 0, behavior: "auto" });
-
-    const reveals = document.querySelectorAll(".reveal");
-    const firstSection = document.getElementById("helyszin");
-
-    const observer = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add("visible");
-                observer.unobserve(entry.target);
-            }
-        });
-    }, {
-        threshold: 0.15,
-        rootMargin: "0px 0px -50px 0px"
-    });
-
-    const nav = document.getElementById("main-nav");
-    const navToggle = nav.querySelector(".nav-toggle");
-    const navLinks = nav.querySelectorAll(".nav-links a");
-
-    navToggle.addEventListener("click", () => {
-        const isOpen = nav.classList.toggle("open");
-        navToggle.setAttribute("aria-expanded", isOpen ? "true" : "false");
-        document.body.classList.toggle("menu-open", isOpen);
-    });
-
-    navLinks.forEach(link => {
-        link.addEventListener("click", () => {
-            nav.classList.remove("open");
-            navToggle.setAttribute("aria-expanded", "false");
-            document.body.classList.remove("menu-open");
-        });
-    });
-
-    void firstSection;
-
-    reveals.forEach(el => {
-        observer.observe(el);
-
-        // Ha már látszik betöltéskor, akkor is animáljuk
-        const rect = el.getBoundingClientRect();
-        if (rect.top < window.innerHeight) {
-            el.classList.add("visible");
-            observer.unobserve(el);
-        }
-    });
-});
-
-function showForm(isComing) {
-    const container = document.getElementById("form-container");
-    container.innerHTML = ""; // előző form törlése
-
-    let formEmbed = "";
-
-    if (isComing) {
-        // Igen → részt vesz
-        formEmbed = `<iframe src="https://docs.google.com/forms/d/e/1FAIpQLSeOEfwvRcQtsM5D7jp4TaJ4_0VbNjcPWsNgESJNdr9wNfSqYg/viewform?embedded=true" 
-            height="1206" frameborder="0" marginheight="0" marginwidth="0">Betöltés…</iframe>`;
-    } else {
-        // Nem → nem tud jönni
-        formEmbed = `<iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdmqlZdZB9KO__K5Az1ecDVWf3_HaU9Bh6EQGuNWELk-7fsuw/viewform?embedded=true" 
-            height="551" frameborder="0" marginheight="0" marginwidth="0">Betöltés…</iframe>`
-    }
-
-    container.innerHTML = formEmbed;
-    }
-</script>
+<script src="js/main.js" defer></script>
 
 
 </body>
