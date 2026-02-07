@@ -67,6 +67,12 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 });
 
+if ("serviceWorker" in navigator) {
+    window.addEventListener("load", () => {
+        navigator.serviceWorker.register("./service-worker.js");
+    });
+}
+
 function showForm(isComing) {
     const container = document.getElementById("form-container");
     if (!container) {
