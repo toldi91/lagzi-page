@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <radialGradient id="g" cx="30%" cy="30%" r="70%">
+      <stop offset="0%" stop-color="#b44a57" />
+      <stop offset="100%" stop-color="#7a1f2b" />
+    </radialGradient>
+  </defs>
+  <rect width="512" height="512" rx="120" fill="url(#g)" />
+  <text x="50%" y="54%" text-anchor="middle" font-family="Georgia, serif" font-size="168" fill="#f9f6f2" letter-spacing="6">K&amp;T</text>
+</svg>
