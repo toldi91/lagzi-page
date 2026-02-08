@@ -94,6 +94,19 @@
     color: var(--bordo);
 }
 
+.calendar-cell.heart-outline {
+    position: relative;
+}
+
+.calendar-cell.heart-outline::before {
+    content: "";
+    position: absolute;
+    inset: -6px;
+    background: no-repeat center/contain;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 44'><path d='M24 41c-1.5-1.3-3-2.5-4.4-3.7C10.3 29.3 4 23.7 4 15.6 4 9.9 8.5 5.5 14.2 5.5c3.8 0 7.3 1.9 9.8 4.9 2.5-3 6-4.9 9.8-4.9C39.5 5.5 44 9.9 44 15.6c0 8.1-6.3 13.7-15.6 21.7-1.4 1.2-2.9 2.4-4.4 3.7z' fill='%237a1f2b'/><text x='24' y='27' text-anchor='middle' font-size='12' font-family='Georgia, serif' fill='white' font-weight='600'>24</text></svg>");
+    pointer-events: none;
+}
+
 .our-big-day{
     justify-content: center;
     display: grid;
