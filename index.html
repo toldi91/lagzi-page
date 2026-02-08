@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="css/helyszin.css" />
     <link rel="stylesheet" href="css/menetrend.css" />
     <link rel="stylesheet" href="css/naszajandek.css" />
+    <link rel="stylesheet" href="css/countdown.css" />
     <link rel="stylesheet" href="css/dresscode.css" />
     <link rel="stylesheet" href="css/menu.css" />
     <link rel="stylesheet" href="css/rsvp.css" />
@@ -47,6 +48,81 @@
 </nav>
 
 <main class="page-content">
+<section id="datum" class="section reveal">
+    <p class="our-big-day">A mi nagy napunk</p>
+    <div class="calendar">
+        <div class="calendar-header">
+            <strong> 2026 október</strong>
+        </div>
+        <div class="calendar-grid" role="grid" aria-label="2026. október naptár">
+            <div class="calendar-day">H</div>
+            <div class="calendar-day">K</div>
+            <div class="calendar-day">Sze</div>
+            <div class="calendar-day">Cs</div>
+            <div class="calendar-day">P</div>
+            <div class="calendar-day">Szo</div>
+            <div class="calendar-day">V</div>
+
+            <div class="calendar-cell empty"></div>
+            <div class="calendar-cell empty"></div>
+            <div class="calendar-cell empty"></div>
+            <div class="calendar-cell">1</div>
+            <div class="calendar-cell">2</div>
+            <div class="calendar-cell">3</div>
+            <div class="calendar-cell">4</div>
+            <div class="calendar-cell">5</div>
+            <div class="calendar-cell">6</div>
+            <div class="calendar-cell">7</div>
+            <div class="calendar-cell">8</div>
+            <div class="calendar-cell">9</div>
+            <div class="calendar-cell">10</div>
+            <div class="calendar-cell">11</div>
+            <div class="calendar-cell">12</div>
+            <div class="calendar-cell">13</div>
+            <div class="calendar-cell">14</div>
+            <div class="calendar-cell">15</div>
+            <div class="calendar-cell">16</div>
+            <div class="calendar-cell">17</div>
+            <div class="calendar-cell">18</div>
+            <div class="calendar-cell">19</div>
+            <div class="calendar-cell">20</div>
+            <div class="calendar-cell">21</div>
+            <div class="calendar-cell">22</div>
+            <div class="calendar-cell">23</div>
+            <div class="calendar-cell highlight" aria-label="Október 24.">24</div>
+            <div class="calendar-cell">25</div>
+            <div class="calendar-cell">26</div>
+            <div class="calendar-cell">27</div>
+            <div class="calendar-cell">28</div>
+            <div class="calendar-cell">29</div>
+            <div class="calendar-cell">30</div>
+            <div class="calendar-cell">31</div>
+        </div>
+    </div>
+</section>
+
+<section id="visszaszamlalo" class="section alt reveal">
+    <h2>Visszaszámláló</h2>
+    <div class="countdown" role="timer" aria-live="polite">
+        <div class="countdown-item">
+            <span class="countdown-value" data-unit="days">00</span>
+            <span class="countdown-label">Nap</span>
+        </div>
+        <div class="countdown-item">
+            <span class="countdown-value" data-unit="hours">00</span>
+            <span class="countdown-label">Óra</span>
+        </div>
+        <div class="countdown-item">
+            <span class="countdown-value" data-unit="minutes">00</span>
+            <span class="countdown-label">Perc</span>
+        </div>
+        <div class="countdown-item">
+            <span class="countdown-value" data-unit="seconds">00</span>
+            <span class="countdown-label">Másodperc</span>
+        </div>
+    </div>
+</section>
+
 <section id="helyszin" class="section reveal">
     <h2>Helyszín</h2>
     <p class="helyszin_nev section-text">Tündér Farm</p>

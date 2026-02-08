@@ -28,3 +28,75 @@
 .section-text {
     margin: 0.75rem 0;
 }
+
+.date-only {
+    text-align: center;
+    font-size: 2.4rem;
+    font-weight: 600;
+    color: var(--bordo);
+    letter-spacing: 2px;
+}
+
+.calendar {
+    max-width: 420px;
+    margin: 2rem auto 0;
+    padding: 1.5rem;
+    border-radius: 18px;
+    background: transparent;
+    border: none;
+    box-shadow: none;
+}
+
+.calendar-header {
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+    color: var(--bordo);
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+}
+
+.calendar-header strong {
+    font-size: 1.2rem;
+    letter-spacing: 1px;
+}
+
+.calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 0;
+    text-align: center;
+    font-size: 0.95rem;
+}
+
+.calendar-day {
+    color: #777;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    padding: 0.4rem 0;
+    border-top: 1px solid rgba(122, 31, 43, 0.2);
+    border-bottom: 1px solid rgba(122, 31, 43, 0.2);
+}
+
+.calendar-cell {
+    padding: 0.45rem 0;
+    border-radius: 8px;
+    color: #333;
+}
+
+.calendar-cell.empty {
+    visibility: hidden;
+}
+
+.calendar-cell.highlight {
+    font-weight: 600;
+    color: var(--bordo);
+}
+
+.our-big-day{
+    justify-content: center;
+    display: grid;
+    color: var(--bordo);
+    font-size: 35px;
+}

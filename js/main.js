@@ -65,6 +65,40 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         });
     }
+
+    const targetDate = new Date("2026-10-24T14:00:00");
+    const countdownValues = {
+        days: document.querySelector('[data-unit="days"]'),
+        hours: document.querySelector('[data-unit="hours"]'),
+        minutes: document.querySelector('[data-unit="minutes"]'),
+        seconds: document.querySelector('[data-unit="seconds"]')
+    };
+
+    const updateCountdown = () => {
+        const now = new Date();
+        const diff = targetDate - now;
+
+        if (diff <= 0) {
+            Object.values(countdownValues).forEach(el => {
+                if (el) el.textContent = "00";
+            });
+            return;
+        }
+
+        const totalSeconds = Math.floor(diff / 1000);
+        const days = Math.floor(totalSeconds / 86400);
+        const hours = Math.floor((totalSeconds % 86400) / 3600);
+        const minutes = Math.floor((totalSeconds % 3600) / 60);
+        const seconds = totalSeconds % 60;
+
+        if (countdownValues.days) countdownValues.days.textContent = String(days).padStart(2, "0");
+        if (countdownValues.hours) countdownValues.hours.textContent = String(hours).padStart(2, "0");
+        if (countdownValues.minutes) countdownValues.minutes.textContent = String(minutes).padStart(2, "0");
+        if (countdownValues.seconds) countdownValues.seconds.textContent = String(seconds).padStart(2, "0");
+    };
+
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
 });
 
 if ("serviceWorker" in navigator) {
