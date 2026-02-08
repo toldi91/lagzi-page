@@ -3,6 +3,10 @@
     max-width: 900px;
     margin: auto;
     animation: fadeInUp 0.8s ease both;
+    margin-bottom: 45px;
+    margin-top: 10px;
+    border-radius: 20px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
 }
 
 .section.alt {
