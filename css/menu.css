@@ -5,6 +5,35 @@
     text-align: center;
 }
 
+.menu > div {
+    position: relative;
+    padding: 1.2rem 1rem;
+    overflow: hidden;
+}
+
+#menu {
+    position: relative;
+}
+
+#menu::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 140px;
+    height: 140px;
+    background: url("../pics/10.png") no-repeat left bottom / contain;
+    opacity: 0.18;
+    z-index: 0;
+    pointer-events: none;
+    border-radius: 20px;
+}
+
+#menu > * {
+    position: relative;
+    z-index: 1;
+}
+
 .menu h3 {
     color: var(--gold);
     margin-bottom: 0.5rem;

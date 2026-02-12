@@ -1,7 +1,6 @@
 .timeline {
     position: relative;
     max-width: 900px;
-    margin: 4rem auto;
     padding: 0;
     list-style: none;
     --content-x: 50%;
@@ -29,7 +28,7 @@
 .timeline li {
     position: relative;
     width: 100%;
-    padding: 1.5rem 1.5rem 1.5rem var(--content-x);
+    padding: 0.5rem 1.5rem 1.5rem var(--content-x);
     box-sizing: border-box;
     text-align: left;
     display: flex;
@@ -73,12 +72,10 @@
     transform: translate(-50%, -50%);
     width: var(--icon-size);
     height: var(--icon-size);
-    background: var(--gold);
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 0 0 6px rgba(201, 164, 76, 0.25);
     z-index: 2;
 }
 
@@ -109,7 +106,6 @@
         padding-left: calc(var(--line-x) + var(--gap));
         padding-right: 1rem;
         text-align: left;
-        margin-bottom: 2rem;
     }
 
     .timeline .icon {

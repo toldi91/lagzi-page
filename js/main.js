@@ -24,6 +24,12 @@ document.addEventListener("DOMContentLoaded", () => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add("visible");
+                if (entry.target.matches(".menu, .menu > div")) {
+                    entry.target.querySelectorAll(".reveal").forEach(child => {
+                        child.classList.add("visible");
+                        observerInstance.unobserve(child);
+                    });
+                }
                 observerInstance.unobserve(entry.target);
             }
         });
