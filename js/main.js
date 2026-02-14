@@ -109,7 +109,41 @@ document.addEventListener("DOMContentLoaded", () => {
 
 if ("serviceWorker" in navigator) {
     window.addEventListener("load", () => {
-        navigator.serviceWorker.register("./service-worker.js");
+        navigator.serviceWorker.register("./service-worker.js").then(registration => {
+            const showUpdateToast = () => {
+                const toast = document.getElementById("update-toast");
+                const btn = document.getElementById("update-btn");
+                if (!toast || !btn) {
+                    return;
+                }
+                toast.classList.add("show");
+                btn.onclick = () => {
+                    if (registration.waiting) {
+                        registration.waiting.postMessage({ type: "SKIP_WAITING" });
+                    }
+                };
+            };
+
+            if (registration.waiting) {
+                showUpdateToast();
+            }
+
+            registration.addEventListener("updatefound", () => {
+                const newWorker = registration.installing;
+                if (!newWorker) {
+                    return;
+                }
+                newWorker.addEventListener("statechange", () => {
+                    if (newWorker.state === "installed" && navigator.serviceWorker.controller) {
+                        showUpdateToast();
+                    }
+                });
+            });
+        });
+    });
+
+    navigator.serviceWorker.addEventListener("controllerchange", () => {
+        window.location.reload();
     });
 }
 
