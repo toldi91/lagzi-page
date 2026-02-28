@@ -1,4 +1,4 @@
-const CACHE_NAME = "lagzi-cache-v1";
+const CACHE_NAME = "lagzi-cache-v3";
 const ASSETS = [
   "./",
   "./index.html",
@@ -19,7 +19,10 @@ const ASSETS = [
   "./css/dresscode.css",
   "./css/menu.css",
   "./css/rsvp.css",
-  "./css/footer.css"
+  "./css/footer.css",
+  "./css/update.css",
+  "./fonts/alex-brush/AlexBrush-Regular.ttf",
+  "./fonts/amsterdam-handwriting/Amsterdam_Handwriting.ttf"
 ];
 
 self.addEventListener("install", event => {
