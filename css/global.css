@@ -1,3 +1,17 @@
+@font-face {
+    font-family: "Alex Brush";
+    src: url("../fonts/alex-brush/AlexBrush-Regular.ttf") format("truetype");
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Amsterdam_Handwriting";
+    src: url("../fonts/amsterdam-handwriting/Amsterdam_Handwriting.ttf") format("truetype");
+    font-style: normal;
+    font-display: swap;
+}
+
 :root {
     --bordo: #7a1f2b;
     --gold: #c9a44c;

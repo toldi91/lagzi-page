@@ -14,7 +14,12 @@
 .hero-content h1 {
     font-size: 3rem;
     color: white;
-    letter-spacing: 2px;
+    letter-spacing: 10px;
+}
+
+.hero-name{
+    font-family: "Amsterdam_Handwriting", cursive;
+    height: 150px;
 }
 
 .hero-content p {

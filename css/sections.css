@@ -13,11 +13,18 @@
     background: white;
 }
 
-.section h2 {
+section h2 {
     color: var(--bordo);
     margin-bottom: 2rem;
     text-align: center;
     position: relative;
+    font-family: "Alex Brush", cursive;
+    font-size: 2.8rem;
+}
+
+section .our-big-day{
+    font-family: "Alex Brush", cursive;
+    font-size: 2.8rem;
 }
 
 .section h2::after {
