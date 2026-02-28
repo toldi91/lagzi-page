@@ -16,32 +16,33 @@
 }
 
 #menu::after {
-    content: "";
+     content: "";
     position: absolute;
     left: 0;
     bottom: 0;
-    width: 140px;
-    height: 140px;
-    background: url("../pics/10.png") no-repeat left bottom / contain;
+    width: 160px;
+    height: 160px;
+    background: url(../pics/11.png) no-repeat left bottom / contain;
     opacity: 0.18;
     z-index: 0;
     pointer-events: none;
     border-radius: 20px;
+    transform: scaleX(-1);
 }
 
 #menu::before {
     content: "";
     position: absolute;
-    right: -14px;
-    bottom: 0;
-    width: 140px;
-    height: 140px;
-    background: url("../pics/10.png") no-repeat right bottom / contain;
+    right: 0px;
+    top: 0px;
+    width: 160px;
+    height: 160px;
+    background: url(../pics/11.png) no-repeat right top / contain;
     opacity: 0.18;
     z-index: 0;
     pointer-events: none;
     border-radius: 42px;
-    transform: scaleX(-1);
+    transform: scaleY(-1);
 }
 
 #menu > * {
