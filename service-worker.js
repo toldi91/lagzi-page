@@ -1,4 +1,4 @@
-const CACHE_NAME = "lagzi-cache-v3";
+const CACHE_NAME = "lagzi-cache-v5";
 const ASSETS = [
   "./",
   "./index.html",
@@ -8,6 +8,9 @@ const ASSETS = [
   "./icons/icon-512.png",
   "./icons/apple-touch-icon.png",
   "./js/main.js",
+  "./js/i18n.js",
+  "./js/i18n-data.js",
+  "./i18n/i18n.json",
   "./css/global.css",
   "./css/animations.css",
   "./css/hero.css",
@@ -20,7 +23,7 @@ const ASSETS = [
   "./css/menu.css",
   "./css/rsvp.css",
   "./css/footer.css",
-  "./css/update.css",
+  "./css/i18n.css",
   "./fonts/alex-brush/AlexBrush-Regular.ttf",
   "./fonts/amsterdam-handwriting/Amsterdam_Handwriting.ttf"
 ];
@@ -44,14 +47,30 @@ self.addEventListener("activate", event => {
 self.addEventListener("fetch", event => {
   if (event.request.method !== "GET") return;
 
+  const request = event.request;
+
+  if (request.mode === "navigate") {
+    event.respondWith(
+      fetch(request)
+        .then(response => {
+          const clone = response.clone();
+          caches.open(CACHE_NAME).then(cache => cache.put(request, clone));
+          return response;
+        })
+        .catch(() => caches.match(request).then(cached => cached || caches.match("./index.html")))
+    );
+    return;
+  }
+
   event.respondWith(
-    caches.match(event.request).then(cached => {
+    caches.match(request).then(cached => {
       if (cached) return cached;
-      return fetch(event.request).then(response => {
+
+      return fetch(request).then(response => {
         const responseClone = response.clone();
-        caches.open(CACHE_NAME).then(cache => cache.put(event.request, responseClone));
+        caches.open(CACHE_NAME).then(cache => cache.put(request, responseClone));
         return response;
-      }).catch(() => caches.match("./index.html"));
+      });
     })
   );
 });

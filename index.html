@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Esküvőnk</title>
+    <title></title>
     <meta name="theme-color" content="#7a1f2b" />
     <link rel="manifest" href="manifest.webmanifest" />
     <link rel="icon" href="icons/icon.svg" type="image/svg+xml" />
@@ -21,49 +21,55 @@
     <link rel="stylesheet" href="css/menu.css" />
     <link rel="stylesheet" href="css/rsvp.css" />
     <link rel="stylesheet" href="css/footer.css" />
+    <link rel="stylesheet" href="css/i18n.css" />
 </head>
-<body>
+<body class="i18n-pending">
 
 <header class="hero">
     <div class="hero-content">
-        <h1 class="hero-name">Kriszti</h1>
-        <h1 class="hero-name">&</h1>
-        <h1 class="hero-name">Tomi</h1>
+        <h1 class="hero-name" data-i18n="hero.bride"></h1>
+        <h1 class="hero-name" data-i18n="hero.and"></h1>
+        <h1 class="hero-name" data-i18n="hero.groom"></h1>
     </div>
 </header>
 
 <nav class="nav" id="main-nav">
-    <button class="nav-toggle" aria-expanded="false" aria-controls="nav-links">
+    <button
+        class="nav-toggle"
+        aria-expanded="false"
+        aria-controls="nav-links"
+        data-i18n-attr="aria-label:nav.toggleAria"
+    >
         <span class="nav-toggle-bar"></span>
         <span class="nav-toggle-bar"></span>
         <span class="nav-toggle-bar"></span>
     </button>
     <ul class="nav-links" id="nav-links">
-        <li><a href="#visszaszamlalo">Visszaszámláló</a></li>
-        <li><a href="#helyszin">Helyszín</a></li>
-        <li><a href="#menetrend">Menetrend</a></li>
-        <li><a href="#naszajandek">Nászajándék</a></li>
-        <li><a href="#dresscode">Dress code</a></li>
-        <li><a href="#menu">Menü</a></li>
-        <li><a href="#visszaigazolas">Visszajelzés</a></li>
+        <li><a href="#visszaszamlalo" data-i18n="nav.countdown"></a></li>
+        <li><a href="#helyszin" data-i18n="nav.location"></a></li>
+        <li><a href="#menetrend" data-i18n="nav.schedule"></a></li>
+        <li><a href="#naszajandek" data-i18n="nav.gift"></a></li>
+        <li><a href="#dresscode" data-i18n="nav.dresscode"></a></li>
+        <li><a href="#menu" data-i18n="nav.menu"></a></li>
+        <li><a href="#visszaigazolas" data-i18n="nav.rsvp"></a></li>
     </ul>
 </nav>
 
 <main class="page-content">
 <section id="datum" class="section alt reveal">
-    <p class="our-big-day">A mi nagy napunk</p>
+    <p class="our-big-day" data-i18n="date.bigDay"></p>
     <div class="calendar">
         <div class="calendar-header">
-            <strong> 2026 október</strong>
+            <strong data-i18n="date.calendarHeader"></strong>
         </div>
-        <div class="calendar-grid" role="grid" aria-label="2026. október naptár">
-            <div class="calendar-day">H</div>
-            <div class="calendar-day">K</div>
-            <div class="calendar-day">Sze</div>
-            <div class="calendar-day">Cs</div>
-            <div class="calendar-day">P</div>
-            <div class="calendar-day">Szo</div>
-            <div class="calendar-day">V</div>
+        <div class="calendar-grid" role="grid" data-i18n-attr="aria-label:date.calendarAria">
+            <div class="calendar-day" data-i18n="date.days.mon"></div>
+            <div class="calendar-day" data-i18n="date.days.tue"></div>
+            <div class="calendar-day" data-i18n="date.days.wed"></div>
+            <div class="calendar-day" data-i18n="date.days.thu"></div>
+            <div class="calendar-day" data-i18n="date.days.fri"></div>
+            <div class="calendar-day" data-i18n="date.days.sat"></div>
+            <div class="calendar-day" data-i18n="date.days.sun"></div>
 
             <div class="calendar-cell empty"></div>
             <div class="calendar-cell empty"></div>
@@ -91,7 +97,7 @@
             <div class="calendar-cell">21</div>
             <div class="calendar-cell">22</div>
             <div class="calendar-cell">23</div>
-            <div class="calendar-cell highlight heart-outline" aria-label="Október 24.">24</div>
+            <div class="calendar-cell highlight heart-outline" data-i18n-attr="aria-label:date.highlightAria">24</div>
             <div class="calendar-cell">25</div>
             <div class="calendar-cell">26</div>
             <div class="calendar-cell">27</div>
@@ -104,132 +110,122 @@
 </section>
 
 <section id="visszaszamlalo" class="section alt reveal">
-    <h2>Visszaszámláló</h2>
+    <h2 data-i18n="countdown.title"></h2>
     <div class="countdown" role="timer" aria-live="polite">
         <div class="countdown-item">
             <span class="countdown-value" data-unit="days">00</span>
-            <span class="countdown-label">Nap</span>
+            <span class="countdown-label" data-i18n="countdown.labels.days"></span>
         </div>
         <div class="countdown-item">
             <span class="countdown-value" data-unit="hours">00</span>
-            <span class="countdown-label">Óra</span>
+            <span class="countdown-label" data-i18n="countdown.labels.hours"></span>
         </div>
         <div class="countdown-item">
             <span class="countdown-value" data-unit="minutes">00</span>
-            <span class="countdown-label">Perc</span>
+            <span class="countdown-label" data-i18n="countdown.labels.minutes"></span>
         </div>
         <div class="countdown-item">
             <span class="countdown-value" data-unit="seconds">00</span>
-            <span class="countdown-label">Másodperc</span>
+            <span class="countdown-label" data-i18n="countdown.labels.seconds"></span>
         </div>
     </div>
 </section>
 
 <section id="helyszin" class="section alt reveal">
-    <h2>Helyszín</h2>
+    <h2 data-i18n="location.title"></h2>
     <div class="tunderfarm-pic">
-        <img src="./pics/tunderfarm.png"/>
+        <img src="./pics/tunderfarm.png" alt="" />
     </div>
     <div class="map-actions reveal">
         <a class="map-button" href="https://www.google.com/maps/dir/?api=1&destination=T%C3%BCnd%C3%A9r%20Farm%2C%208420%20Zirc%2C%20Esterh%C3%A1zy%20utca%2018" target="_blank" rel="noopener noreferrer">
             <img class="map-button-icon" src="icons/map-pin.png" alt="" aria-hidden="true" />
-            Tündér Farm<br>8420 Zirc, Esterházy utca 18.
+            <span data-i18n="location.mapName"></span><br>
+            <span data-i18n="location.mapAddress"></span>
         </a>
     </div>
-    <p class="section-text">Parkolás:</p>
-    <p class="section-text">
-        A farm területén kényelmes parkolási lehetőség biztosított minden vendég számára, így nem kell aggódnotok az autóért.
-    </p>
+    <p class="section-text" data-i18n="location.parkingTitle"></p>
+    <p class="section-text" data-i18n="location.parkingBody"></p>
 </section>
 
 <section id="menetrend" class="section alt reveal">
-    <h2>Menetrend</h2>
+    <h2 data-i18n="schedule.title"></h2>
     <ul class="timeline">
-    <li class="reveal">
-        <span class="icon">
-            <!-- Vendégvárás -->
-            <img src="./icons/Vendegvaras.png" alt="" aria-hidden="true" class="reveal"/>
-        </span>
-        <div class="content">
-            <strong>14:00</strong>
-            <p>Vendégvárás</p>
-        </div>
-    </li>
+        <li class="reveal">
+            <span class="icon">
+                <img src="./icons/Vendegvaras.png" alt="" aria-hidden="true" class="reveal" />
+            </span>
+            <div class="content">
+                <strong data-i18n="schedule.items.welcome.time"></strong>
+                <p data-i18n="schedule.items.welcome.label"></p>
+            </div>
+        </li>
 
-    <li class="reveal">
-        <span class="icon">
-            <!-- Szertartás (gyűrűk) -->
-            <img src="./icons/Szertartas.png" alt="" aria-hidden="true" class="reveal"/>
-        </span>
-        <div class="content">
-            <strong>15:00</strong>
-            <p>Szertartás</p>
-        </div>
-    </li>
+        <li class="reveal">
+            <span class="icon">
+                <img src="./icons/Szertartas.png" alt="" aria-hidden="true" class="reveal" />
+            </span>
+            <div class="content">
+                <strong data-i18n="schedule.items.ceremony.time"></strong>
+                <p data-i18n="schedule.items.ceremony.label"></p>
+            </div>
+        </li>
 
-    <li class="reveal">
-        <span class="icon">
-            <!-- Fotózás -->
-            <img src="./icons/Fotozas.png" alt="" aria-hidden="true" class="reveal"/>
-        </span>
-        <div class="content">
-            <strong>15:30</strong>
-            <p>Gratuláció, fotózás</p>
-        </div>
-    </li>
+        <li class="reveal">
+            <span class="icon">
+                <img src="./icons/Fotozas.png" alt="" aria-hidden="true" class="reveal" />
+            </span>
+            <div class="content">
+                <strong data-i18n="schedule.items.photos.time"></strong>
+                <p data-i18n="schedule.items.photos.label"></p>
+            </div>
+        </li>
 
-    <li class="reveal">
-        <span class="icon">
-            <!-- Vacsora (evőeszközök) -->
-            <img src="./icons/Vacsora.png" alt="" aria-hidden="true" class="reveal"/>
-        </span>
-        <div class="content">
-            <strong>17:00</strong>
-            <p>Vacsora</p>
-        </div>
-    </li>
+        <li class="reveal">
+            <span class="icon">
+                <img src="./icons/Vacsora.png" alt="" aria-hidden="true" class="reveal" />
+            </span>
+            <div class="content">
+                <strong data-i18n="schedule.items.dinner.time"></strong>
+                <p data-i18n="schedule.items.dinner.label"></p>
+            </div>
+        </li>
 
-    <li class="reveal">
-        <span class="icon">
-            <!-- Zene / buli -->
-            <img src="./icons/Nyitotanc.png" alt="" aria-hidden="true" class="reveal"/>
-        </span>
-        <div class="content">
-            <strong>19:00</strong>
-            <p>Nyitótánc & buli</p>
-        </div>
-    </li>
+        <li class="reveal">
+            <span class="icon">
+                <img src="./icons/Nyitotanc.png" alt="" aria-hidden="true" class="reveal" />
+            </span>
+            <div class="content">
+                <strong data-i18n="schedule.items.party.time"></strong>
+                <p data-i18n="schedule.items.party.label"></p>
+            </div>
+        </li>
 
-    <li class="reveal">
-        <span class="icon">
-            <!-- Zene / buli -->
-            <img src="./icons/Tortazas.png" alt="" aria-hidden="true" class="reveal"/>
-        </span>
-        <div class="content">
-            <strong>21:00</strong>
-            <p>Torta</p>
-        </div>
-    </li>
-</ul>
+        <li class="reveal">
+            <span class="icon">
+                <img src="./icons/Tortazas.png" alt="" aria-hidden="true" class="reveal" />
+            </span>
+            <div class="content">
+                <strong data-i18n="schedule.items.cake.time"></strong>
+                <p data-i18n="schedule.items.cake.label"></p>
+            </div>
+        </li>
+    </ul>
 </section>
 
 <section id="naszajandek" class="section alt reveal">
-    <h2>Nászajándék</h2>
-    <p class="section-text">A legnagyobb ajándék számunkra az, ha velünk ünnepeltek.🫶🏻</p>
-    <p class="section-text">
-        Ha mégis szeretnétek hozzájárulni a boldogságunkhoz, egy 
-        kis „úti hozzájárulás” sokat segít abban, hogy a nászutunkon átszelhessük az óceánt. 🌍✈️
-    </p>
-    <p class="section-text">Köszönjük! 💫</p>
+    <h2 data-i18n="gift.title"></h2>
+    <p class="section-text" data-i18n="gift.p1"></p>
+    <p class="section-text" data-i18n="gift.p2"></p>
+    <p class="section-text" data-i18n="gift.p3"></p>
 </section>
 
 <section id="dresscode" class="section alt reveal">
-    <h2>Dress code</h2>
+    <h2 data-i18n="dresscode.title"></h2>
 
     <div class="dresscode-text">
-        <p>Szeretettel kérünk Benneteket, hogy az esküvő hangulatához illő öltözetben érkezzetek.</p>
-        <p>Örülnénk, ha ruhaválasztásotokkal az alábbi, természetes és őszi színvilágot erősítenétek.</p>
-        <p>De a legfontosabb, hogy jól érezzétek magatokat, bármit is vesztek fel.</p>
+        <p data-i18n="dresscode.p1"></p>
+        <p data-i18n="dresscode.p2"></p>
+        <p data-i18n="dresscode.p3"></p>
     </div>
 
     <div class="color-palette">
@@ -261,48 +257,48 @@
 </section>
 
 <section id="menu" class="section alt reveal">
-    <h2>Menü</h2>
+    <h2 data-i18n="menu.title"></h2>
     <div class="menu">
         <div>
-            <h3>Előétel</h3>
-            <p>Tyúkhúsleves</p>
+            <h3 data-i18n="menu.items.appetizer.title"></h3>
+            <p data-i18n="menu.items.appetizer.description"></p>
         </div>
         <div>
-            <h3>Főétel</h3>
-            <p>Sültestál köretekkel</p>
+            <h3 data-i18n="menu.items.main.title"></h3>
+            <p data-i18n="menu.items.main.description"></p>
         </div>
         <div>
-            <h3>Éjszakai vacsora</h3>
-            <p>Sültek / Sertés pörkölt svédasztalon</p>
+            <h3 data-i18n="menu.items.late.title"></h3>
+            <p data-i18n="menu.items.late.description"></p>
         </div>
     </div>
 </section>
 
 <section id="visszaigazolas" class="section alt reveal">
-    <h2>Visszajelzés</h2>
+    <h2 data-i18n="rsvp.title"></h2>
 
     <div class="rsvp-simple">
-        <p class="rsvp-question">Kérjük, az alábbi gombok segítségével jelezd részvételedet.</p>
-        <p class="rsvp-deadline">Határidő: szeptember 01., hogy időben tudjuk leadni a végleges létszámot. ✨</p>
+        <p class="rsvp-question" data-i18n="rsvp.question"></p>
+        <p class="rsvp-deadline" data-i18n="rsvp.deadline"></p>
 
         <div class="rsvp-buttons">
-            <button class="rsvp-btn yes" onclick="showForm(true)">Igen, ott leszek</button>
-            <button class="rsvp-btn no" onclick="showForm(false)">Sajnos nem tudok menni</button>
+            <button class="rsvp-btn yes" onclick="showForm(true)" data-i18n="rsvp.yesButton"></button>
+            <button class="rsvp-btn no" onclick="showForm(false)" data-i18n="rsvp.noButton"></button>
         </div>
 
-        <!-- Google Formok helye -->
         <div id="form-container"></div>
     </div>
 </section>
 
 
 <footer class="footer">
-    <p>Szeretettel várunk Benneteket 🤍</p>
+    <p data-i18n="footer.invite"></p>
 </footer>
 </main>
 
+<script src="js/i18n-data.js" defer></script>
+<script src="js/i18n.js" defer data-i18n-file="i18n/i18n.json" data-i18n-default="hu"></script>
 <script src="js/main.js" defer></script>
-
 
 </body>
 </html>
