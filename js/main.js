@@ -107,9 +107,9 @@ document.addEventListener("DOMContentLoaded", () => {
     setInterval(updateCountdown, 1000);
 });
 
-if ("serviceWorker" in navigator) {
+if ("serviceWorker" in navigator && window.location.protocol !== "file:") {
     window.addEventListener("load", () => {
-        navigator.serviceWorker.register("./service-worker.js");
+        navigator.serviceWorker.register("./service-worker.js").catch(() => {});
     });
 }
 
@@ -123,12 +123,14 @@ function showForm(isComing) {
 
     let formEmbed = "";
 
+    const loadingText = window.I18n?.t("rsvp.formLoading", null, "");
+
     if (isComing) {
         formEmbed = `<iframe src="https://docs.google.com/forms/d/e/1FAIpQLSeOEfwvRcQtsM5D7jp4TaJ4_0VbNjcPWsNgESJNdr9wNfSqYg/viewform?embedded=true" 
-            height="1206" frameborder="0" marginheight="0" marginwidth="0">Betöltés…</iframe>`;
+            height="1206" frameborder="0" marginheight="0" marginwidth="0">${loadingText}</iframe>`;
     } else {
         formEmbed = `<iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdmqlZdZB9KO__K5Az1ecDVWf3_HaU9Bh6EQGuNWELk-7fsuw/viewform?embedded=true" 
-            height="551" frameborder="0" marginheight="0" marginwidth="0">Betöltés…</iframe>`;
+            height="551" frameborder="0" marginheight="0" marginwidth="0">${loadingText}</iframe>`;
     }
 
     container.innerHTML = formEmbed;
