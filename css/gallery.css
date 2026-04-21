@@ -106,12 +106,31 @@
     }
 
     .gallery-marquee {
-        mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
-        -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+        overflow-x: auto;
+        overflow-y: hidden;
+        mask-image: none;
+        -webkit-mask-image: none;
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+        scroll-snap-type: x proximity;
+        -webkit-overflow-scrolling: touch;
+        touch-action: pan-x;
+    }
+
+    .gallery-marquee::-webkit-scrollbar {
+        display: none;
+    }
+
+    .gallery-track {
+        animation: none;
+        transform: none;
+        width: auto;
+        min-width: 100%;
     }
 
     .gallery-card {
-        flex-basis: clamp(140px, 70vw, 220px);
+        flex-basis: clamp(180px, 78vw, 260px);
+        scroll-snap-align: center;
     }
 }
 

@@ -1,4 +1,4 @@
-const CACHE_NAME = "lagzi-cache-v5";
+const CACHE_NAME = "lagzi-cache-v6";
 const ASSETS = [
   "./",
   "./index.html",
@@ -19,6 +19,8 @@ const ASSETS = [
   "./css/helyszin.css",
   "./css/menetrend.css",
   "./css/naszajandek.css",
+  "./css/gallery.css",
+  "./css/countdown.css",
   "./css/dresscode.css",
   "./css/menu.css",
   "./css/rsvp.css",
