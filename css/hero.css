@@ -30,7 +30,6 @@
     background-position: center 40%;
     opacity: 0;
     transform: scale(1.03) translate3d(0, 1.25rem, 0);
-    animation: heroImageIn 2.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 
 .hero::after {
@@ -44,7 +43,6 @@
         );
     opacity: 0;
     transform: translate3d(0, -0.9rem, 0);
-    animation: heroOverlayIn 2.2s cubic-bezier(0.22, 1, 0.36, 1) 0.18s forwards;
 }
 
 .hero-content {
@@ -104,6 +102,14 @@
         opacity: 1;
         transform: translate3d(0, 0, 0);
     }
+}
+
+body.i18n-ready.page-loaded .hero::before {
+    animation: heroImageIn 2.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+body.i18n-ready.page-loaded .hero::after {
+    animation: heroOverlayIn 2.2s cubic-bezier(0.22, 1, 0.36, 1) 0.18s forwards;
 }
 
 @media (max-width: 600px) {

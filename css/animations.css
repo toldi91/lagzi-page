@@ -1,14 +1,11 @@
 .hero-name {
     opacity: 0;
     transform: translateY(30px);
-    animation: nameIn 1.6s ease forwards;
 }
 
 .hero-date {
     opacity: 0;
     transform: translateY(20px);
-    animation: dateIn 1.2s ease forwards;
-    animation-delay: 1.4s;
 }
 
 @keyframes nameIn {
@@ -31,6 +28,15 @@
         opacity: 1;
         transform: translateY(0);
     }
+}
+
+body.i18n-ready.page-loaded .hero-name {
+    animation: nameIn 1.6s ease forwards;
+}
+
+body.i18n-ready.page-loaded .hero-date {
+    animation: dateIn 1.2s ease forwards;
+    animation-delay: 1.4s;
 }
 
 .reveal {
