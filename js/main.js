@@ -22,34 +22,41 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     const reveals = document.querySelectorAll(".reveal");
+    const supportsIntersectionObserver = "IntersectionObserver" in window;
 
-    const observer = new IntersectionObserver((entries, observerInstance) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add("visible");
-                if (entry.target.matches(".menu, .menu > div")) {
-                    entry.target.querySelectorAll(".reveal").forEach(child => {
-                        child.classList.add("visible");
-                        observerInstance.unobserve(child);
-                    });
+    if (supportsIntersectionObserver) {
+        const observer = new IntersectionObserver((entries, observerInstance) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("visible");
+                    if (entry.target.matches(".menu, .menu > div")) {
+                        entry.target.querySelectorAll(".reveal").forEach(child => {
+                            child.classList.add("visible");
+                            observerInstance.unobserve(child);
+                        });
+                    }
+                    observerInstance.unobserve(entry.target);
                 }
-                observerInstance.unobserve(entry.target);
+            });
+        }, {
+            threshold: 0.15,
+            rootMargin: "0px 0px -50px 0px"
+        });
+
+        reveals.forEach(el => {
+            observer.observe(el);
+
+            const rect = el.getBoundingClientRect();
+            if (rect.top < window.innerHeight) {
+                el.classList.add("visible");
+                observer.unobserve(el);
             }
         });
-    }, {
-        threshold: 0.15,
-        rootMargin: "0px 0px -50px 0px"
-    });
-
-    reveals.forEach(el => {
-        observer.observe(el);
-
-        const rect = el.getBoundingClientRect();
-        if (rect.top < window.innerHeight) {
+    } else {
+        reveals.forEach(el => {
             el.classList.add("visible");
-            observer.unobserve(el);
-        }
-    });
+        });
+    }
 
     const nav = document.getElementById("main-nav");
     if (nav) {

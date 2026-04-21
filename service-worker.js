@@ -1,4 +1,4 @@
-const CACHE_NAME = "lagzi-cache-v6";
+const CACHE_NAME = "lagzi-cache-v7";
 const ASSETS = [
   "./",
   "./index.html",
@@ -27,7 +27,22 @@ const ASSETS = [
   "./css/footer.css",
   "./css/i18n.css",
   "./fonts/alex-brush/AlexBrush-Regular.ttf",
-  "./fonts/amsterdam-handwriting/Amsterdam_Handwriting.ttf"
+  "./fonts/amsterdam-handwriting/Amsterdam_Handwriting.ttf",
+  "./pics/felso_resz.JPEG",
+  "./pics/tunderfarm.png",
+  "./pics/11.png",
+  "./pics/12.png",
+  "./pics/DSC_4965.JPEG",
+  "./pics/DSC_4977.JPEG",
+  "./pics/DSC_4999.JPEG",
+  "./pics/DSC_5004.JPEG",
+  "./pics/DSC_5023.JPEG",
+  "./pics/DSC_5095.JPEG",
+  "./pics/DSC_5140.JPEG",
+  "./pics/DSC_5214.JPEG",
+  "./pics/DSC_5219.JPEG",
+  "./pics/DSC_5249.JPEG",
+  "./pics/DSC_5255.JPEG"
 ];
 
 self.addEventListener("install", event => {
