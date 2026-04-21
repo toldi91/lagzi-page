@@ -8,6 +8,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const skipTags = new Set(["svg", "path", "circle", "rect", "line", "polyline", "polygon"]);
     sections.forEach(section => {
         section.querySelectorAll("*").forEach(el => {
+            if (el.closest("[data-no-auto-reveal]")) {
+                return;
+            }
             if (skipTags.has(el.tagName.toLowerCase())) {
                 return;
             }

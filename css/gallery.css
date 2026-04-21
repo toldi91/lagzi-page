@@ -1,0 +1,123 @@
+.gallery-section {
+    max-width: 900px;
+    overflow: hidden;
+    padding-bottom: 0px;
+    padding-top: 0px;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    background:
+        radial-gradient(circle at top left, rgba(201, 164, 76, 0.14), transparent 34%),
+        radial-gradient(circle at bottom right, rgba(122, 31, 43, 0.14), transparent 36%),
+        #fff;
+}
+
+.gallery-marquee {
+    position: relative;
+    display: block;
+    width: 100%;
+    overflow: hidden;
+    padding: 0.5rem 0;
+    mask-image: linear-gradient(to right, transparent, black 7%, black 93%, transparent);
+    -webkit-mask-image: linear-gradient(to right, transparent, black 7%, black 93%, transparent);
+}
+
+.gallery-track {
+    display: flex;
+    align-items: stretch;
+    width: max-content;
+    min-width: max-content;
+    animation: gallery-slide-right 30s linear infinite;
+    will-change: transform;
+}
+
+.gallery-card {
+    flex: 0 0 clamp(170px, 28vw, 290px);
+    aspect-ratio: 4 / 5;
+    margin: 0;
+    overflow: hidden;
+    background: linear-gradient(180deg, rgba(122, 31, 43, 0.08), rgba(201, 164, 76, 0.08));
+    box-shadow: 0 18px 34px rgba(27, 10, 13, 0.18);
+    transform: translateZ(0);
+}
+
+.gallery-card img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    object-position: center center;
+}
+
+.gallery-quote {
+    margin: 1.5rem auto 0;
+    max-width: 620px;
+    padding: 0;
+    text-align: center;
+    color: var(--bordo);
+}
+
+.gallery-quote p {
+    margin: 0;
+    font-family: "Georgia", serif;
+    font-size: clamp(1.05rem, 2.3vw, 1.35rem);
+    line-height: 1.35;
+    font-style: italic;
+}
+
+.gallery-quote cite {
+    display: block;
+    margin-top: 0.8rem;
+    font-style: normal;
+    font-size: 0.92rem;
+    letter-spacing: 0.04em;
+    color: rgba(122, 31, 43, 0.78);
+}
+
+@keyframes gallery-slide-right {
+    from {
+        transform: translateX(-50%);
+    }
+
+    to {
+        transform: translateX(0);
+    }
+}
+
+@media (max-width: 900px) {
+    .gallery-section {
+        max-width: 100%;
+        padding-left: 0.9rem;
+        padding-right: 0.9rem;
+    }
+
+    .gallery-card {
+        flex-basis: clamp(150px, 42vw, 240px);
+    }
+
+    .gallery-quote {
+        margin-top: 1.2rem;
+    }
+}
+
+@media (max-width: 600px) {
+    .gallery-section {
+        padding-left: 0.75rem;
+        padding-right: 0.75rem;
+    }
+
+    .gallery-marquee {
+        mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+        -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+    }
+
+    .gallery-card {
+        flex-basis: clamp(140px, 70vw, 220px);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .gallery-track {
+        animation: none;
+        transform: translateX(0);
+    }
+}
