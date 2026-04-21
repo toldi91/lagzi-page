@@ -106,18 +106,6 @@
         padding-right: 0.75rem;
     }
 
-    .gallery-marquee {
-        overflow-x: auto;
-        overflow-y: hidden;
-        mask-image: none;
-        -webkit-mask-image: none;
-        -ms-overflow-style: none;
-        scrollbar-width: none;
-        scroll-snap-type: x proximity;
-        -webkit-overflow-scrolling: touch;
-        touch-action: pan-x;
-    }
-
     .gallery-marquee::-webkit-scrollbar {
         display: none;
     }
