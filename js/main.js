@@ -107,6 +107,25 @@ document.addEventListener("DOMContentLoaded", () => {
     setInterval(updateCountdown, 1000);
 });
 
+const revealPage = () => {
+    document.body.classList.remove("page-loading");
+    document.body.classList.add("page-loaded");
+};
+
+const waitForFonts = () => {
+    if (document.fonts && typeof document.fonts.ready?.then === "function") {
+        return document.fonts.ready.catch(() => {});
+    }
+
+    return Promise.resolve();
+};
+
+window.addEventListener("load", () => {
+    waitForFonts().then(() => {
+        requestAnimationFrame(revealPage);
+    });
+});
+
 if ("serviceWorker" in navigator && window.location.protocol !== "file:") {
     window.addEventListener("load", () => {
         navigator.serviceWorker.register("./service-worker.js").catch(() => {});

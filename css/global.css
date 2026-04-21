@@ -32,6 +32,20 @@ body {
     font-family: "Georgia", serif;
     background: var(--cream);
     color: #333;
+    transition: opacity 0.25s ease;
+}
+
+body.page-loading,
+body.i18n-pending {
+    visibility: hidden;
+    opacity: 0;
+    pointer-events: none;
+}
+
+body.i18n-ready.page-loaded {
+    visibility: visible;
+    opacity: 1;
+    pointer-events: auto;
 }
 
 body.menu-open {

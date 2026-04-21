@@ -1,25 +1,79 @@
 .hero {
-    height: 100vh;
-    background: linear-gradient(
-            rgba(122, 31, 43, 0.6),
-            rgba(122, 31, 43, 0.6)
-        ),
-        center / cover;
+    position: relative;
+    z-index: 0;
+    isolation: isolate;
+    min-height: 100vh;
+    min-height: 100svh;
+    padding: clamp(4.5rem, 10vw, 7rem) 1rem;
+    background-color: #15090c;
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
+    overflow: hidden;
+}
+
+.hero::before,
+.hero::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    will-change: opacity, transform;
+}
+
+.hero::before {
+    z-index: 0;
+    background-image: url("../pics/felso_resz.JPEG");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center 40%;
+    opacity: 0;
+    transform: scale(1.03) translate3d(0, 1.25rem, 0);
+    animation: heroImageIn 2.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.hero::after {
+    z-index: 1;
+    background-image:
+        linear-gradient(
+            180deg,
+            rgba(30, 10, 14, 0.36) 0%,
+            rgba(30, 10, 14, 0.24) 42%,
+            rgba(30, 10, 14, 0.56) 100%
+        );
+    opacity: 0;
+    transform: translate3d(0, -0.9rem, 0);
+    animation: heroOverlayIn 2.2s cubic-bezier(0.22, 1, 0.36, 1) 0.18s forwards;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    width: min(92vw, 56rem);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: clamp(0.75rem, 2vw, 2rem);
+    bottom: -12rem;
+    text-align: center;
+    flex-wrap: nowrap;
 }
 
 .hero-content h1 {
-    font-size: 3rem;
+    margin: 0;
+    font-size: clamp(2rem, 6vw, 4.1rem);
     color: white;
-    letter-spacing: 10px;
+    letter-spacing: clamp(0.08em, 0.9vw, 0.22em);
+    line-height: 0.92;
+    text-shadow: 0 3px 18px rgba(0, 0, 0, 0.35);
 }
 
-.hero-name{
+.hero-name {
     font-family: "Amsterdam_Handwriting", cursive;
-    height: 150px;
+    height: auto;
+    white-space: nowrap;
 }
 
 .hero-content p {
@@ -28,8 +82,73 @@
     margin-top: 1rem;
 }
 
+@keyframes heroImageIn {
+    0% {
+        opacity: 0;
+        transform: scale(1.03) translate3d(0, 1.25rem, 0);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1) translate3d(0, 0, 0);
+    }
+}
+
+@keyframes heroOverlayIn {
+    0% {
+        opacity: 0;
+        transform: translate3d(0, -0.9rem, 0);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+    }
+}
+
 @media (max-width: 600px) {
+    .hero {
+        padding-inline: 0.85rem;
+    }
+
+    .hero::before {
+        background-position: center 55%;
+    }
+
+    .hero-content {
+        gap: 0.65rem;
+    }
+
     .hero-content h1 {
-        font-size: 2.2rem;
+        font-size: clamp(1.1rem, 11.5vw, 4rem);
+        letter-spacing: 0.06em;
+    }
+}
+
+@media (orientation: landscape) and (max-height: 700px) {
+    .hero {
+        padding-block: 2.5rem;
+    }
+
+    .hero::before {
+        background-position: center 58%;
+    }
+
+    .hero-content {
+        width: min(86vw, 48rem);
+    }
+
+    .hero-content h1 {
+        font-size: clamp(1.35rem, 3vw, 2.5rem);
+        letter-spacing: 0.1em;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .hero::before,
+    .hero::after {
+        animation: none;
+        opacity: 1;
+        transform: none;
     }
 }

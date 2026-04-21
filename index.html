@@ -5,6 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title></title>
     <meta name="theme-color" content="#7a1f2b" />
+    <style>
+        html,
+        body {
+            background: #15090c;
+        }
+
+        body {
+            visibility: hidden;
+            opacity: 0;
+            pointer-events: none;
+        }
+    </style>
+    <noscript>
+        <style>
+            body {
+                visibility: visible;
+                opacity: 1;
+                pointer-events: auto;
+            }
+        </style>
+    </noscript>
     <link rel="manifest" href="manifest.webmanifest" />
     <link rel="icon" href="icons/icon.svg" type="image/svg+xml" />
     <link rel="apple-touch-icon" href="icons/apple-touch-icon.png" />
@@ -23,7 +44,7 @@
     <link rel="stylesheet" href="css/footer.css" />
     <link rel="stylesheet" href="css/i18n.css" />
 </head>
-<body class="i18n-pending">
+<body class="i18n-pending page-loading">
 
 <header class="hero">
     <div class="hero-content">

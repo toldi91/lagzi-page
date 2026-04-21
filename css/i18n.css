@@ -2,7 +2,7 @@ body.i18n-pending {
     visibility: hidden;
 }
 
-body.i18n-ready {
+body.i18n-ready.page-loaded {
     visibility: visible;
 }
 
