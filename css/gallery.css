@@ -19,6 +19,7 @@
     padding: 0.5rem 0;
     mask-image: linear-gradient(to right, transparent, black 7%, black 93%, transparent);
     -webkit-mask-image: linear-gradient(to right, transparent, black 7%, black 93%, transparent);
+    pointer-events: none;
 }
 
 .gallery-track {
@@ -122,21 +123,10 @@
     }
 
     .gallery-track {
-        animation-duration: 5s;
-        transform: none;
-        width: auto;
         min-width: 100%;
     }
 
     .gallery-card {
         flex-basis: clamp(180px, 78vw, 260px);
-        scroll-snap-align: center;
-    }
-}
-
-@media (prefers-reduced-motion: reduce) {
-    .gallery-track {
-        animation-duration: 5s;
-        transform: translateX(0);
     }
 }
