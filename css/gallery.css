@@ -122,7 +122,7 @@
     }
 
     .gallery-track {
-        animation: none;
+        animation-duration: 5s;
         transform: none;
         width: auto;
         min-width: 100%;
@@ -136,7 +136,7 @@
 
 @media (prefers-reduced-motion: reduce) {
     .gallery-track {
-        animation: none;
+        animation-duration: 5s;
         transform: translateX(0);
     }
 }
