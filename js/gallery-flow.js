@@ -36,6 +36,7 @@
             this.resizeObserver = null;
             this.intersectionObserver = null;
             this.mediaReduceMotion = null;
+            this.useLeftPosition = false;
 
             this.handleResize = this.handleResize.bind(this);
             this.handleVisibilityChange = this.handleVisibilityChange.bind(this);
@@ -69,6 +70,10 @@
             if (figures.length < 2) {
                 return false;
             }
+
+            const ua = navigator.userAgent || "";
+            const isIOSDevice = /iPad|iPhone|iPod/.test(ua) || (ua.includes("Macintosh") && "ontouchend" in document);
+            this.useLeftPosition = isIOSDevice;
 
             this.viewport = document.createElement("div");
             this.viewport.className = VIEWPORT_CLASS;
@@ -287,6 +292,14 @@
                 return;
             }
 
+            if (this.useLeftPosition) {
+                this.track.style.transform = "none";
+                this.track.style.webkitTransform = "none";
+                this.track.style.left = `${-this.offset}px`;
+                return;
+            }
+
+            this.track.style.left = "0px";
             this.track.style.transform = `translate3d(${-this.offset}px, 0, 0)`;
             this.track.style.webkitTransform = this.track.style.transform;
         }
