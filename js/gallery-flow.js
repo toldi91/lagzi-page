@@ -248,8 +248,29 @@
                 return 0;
             }
 
-            const rect = this.baseGroup.getBoundingClientRect();
-            const measured = Math.max(rect.width || 0, this.baseGroup.scrollWidth || 0, this.baseGroup.offsetWidth || 0);
+            const cards = Array.from(this.baseGroup.children);
+            if (!cards.length) {
+                return 0;
+            }
+
+            const styles = window.getComputedStyle(this.baseGroup);
+            const gapValue = styles.columnGap || styles.gap || "0";
+            const gap = Number.parseFloat(gapValue) || 0;
+
+            const cardsWidth = cards.reduce((sum, card) => {
+                const rect = card.getBoundingClientRect();
+                const width = rect.width || card.offsetWidth || 0;
+                return sum + width;
+            }, 0);
+
+            const byChildren = cardsWidth + gap * Math.max(0, cards.length - 1);
+            const byRects = Math.max(
+                this.baseGroup.getBoundingClientRect().width || 0,
+                this.baseGroup.scrollWidth || 0,
+                this.baseGroup.offsetWidth || 0
+            );
+
+            const measured = byChildren > 0 ? byChildren : byRects;
             return measured > 0 ? measured : 0;
         }
 
@@ -257,6 +278,8 @@
             if (!this.viewport || !this.track || !this.baseGroup || !this.groupWidth) {
                 return;
             }
+
+            this.baseGroup.style.width = `${this.groupWidth}px`;
 
             const viewportWidth = this.viewport.clientWidth || this.viewport.getBoundingClientRect().width || 0;
             const minimumTrackWidth = viewportWidth + this.groupWidth * 2;
@@ -273,6 +296,11 @@
             }
 
             this.groups = Array.from(this.track.children);
+            this.groups.forEach(group => {
+                group.style.width = `${this.groupWidth}px`;
+                group.style.flex = `0 0 ${this.groupWidth}px`;
+            });
+            this.track.style.width = `${this.groups.length * this.groupWidth}px`;
         }
 
         normalizeOffset(value) {
