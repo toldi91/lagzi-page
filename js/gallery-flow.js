@@ -18,9 +18,12 @@
             this.groupWidth = 0;
             this.destroyed = false;
             this.retryScheduled = false;
+            this.refreshQueued = false;
+            this.resizeObserver = null;
 
             this.handleResize = this.handleResize.bind(this);
             this.handleLoad = this.handleLoad.bind(this);
+            this.handleObservedResize = this.handleObservedResize.bind(this);
             this.tick = this.tick.bind(this);
         }
 
@@ -50,10 +53,14 @@
             this.items = items.map(item => item.cloneNode(true));
             this.items.forEach(item => this.group.appendChild(item));
 
-            this.cloneGroup = this.group.cloneNode(true);
-            this.cloneGroup.setAttribute("aria-hidden", "true");
+            this.clonedGroups = [this.group];
+            for (let i = 0; i < 2; i += 1) {
+                const cloneGroup = this.group.cloneNode(true);
+                cloneGroup.setAttribute("aria-hidden", "true");
+                this.clonedGroups.push(cloneGroup);
+            }
 
-            this.track.append(this.group, this.cloneGroup);
+            this.track.append(...this.clonedGroups);
             this.viewport.appendChild(this.track);
             this.section.insertBefore(this.viewport, this.source);
 
@@ -72,6 +79,11 @@
             this.section.dataset[INIT_FLAG] = "true";
 
             window.addEventListener("resize", this.handleResize, { passive: true });
+            if ("ResizeObserver" in window) {
+                this.resizeObserver = new ResizeObserver(this.handleObservedResize);
+                this.resizeObserver.observe(this.viewport);
+                this.resizeObserver.observe(this.group);
+            }
             this.start();
 
             return true;
@@ -93,7 +105,7 @@
         }
 
         handleResize() {
-            this.refreshMeasurements();
+            this.queueRefresh();
         }
 
         handleLoad() {
@@ -103,6 +115,26 @@
 
             this.retryScheduled = false;
             this.init();
+        }
+
+        handleObservedResize() {
+            this.queueRefresh();
+        }
+
+        queueRefresh() {
+            if (this.destroyed || this.refreshQueued) {
+                return;
+            }
+
+            this.refreshQueued = true;
+            window.requestAnimationFrame(() => {
+                if (this.destroyed) {
+                    this.refreshQueued = false;
+                    return;
+                }
+                this.refreshQueued = false;
+                this.refreshMeasurements();
+            });
         }
 
         applyTransform() {
@@ -145,6 +177,10 @@
         destroy() {
             this.destroyed = true;
             this.stop();
+            if (this.resizeObserver) {
+                this.resizeObserver.disconnect();
+                this.resizeObserver = null;
+            }
             window.removeEventListener("resize", this.handleResize);
             window.removeEventListener("load", this.handleLoad);
         }
