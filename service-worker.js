@@ -1,4 +1,4 @@
-const CACHE_NAME = "lagzi-cache-v7";
+const CACHE_NAME = "lagzi-cache-v8";
 const ASSETS = [
   "./",
   "./index.html",
@@ -8,6 +8,7 @@ const ASSETS = [
   "./icons/icon-512.png",
   "./icons/apple-touch-icon.png",
   "./js/main.js",
+  "./js/gallery-flow.js",
   "./js/i18n.js",
   "./js/i18n-data.js",
   "./i18n/i18n.json",
