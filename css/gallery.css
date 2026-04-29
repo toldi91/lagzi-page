@@ -58,10 +58,6 @@
     object-position: center center;
 }
 
-.gallery-flow .gallery-grid {
-    display: none;
-}
-
 .gallery-quote {
     margin: 1.5rem auto 0;
     max-width: 620px;

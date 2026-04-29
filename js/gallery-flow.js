@@ -53,12 +53,20 @@
 
             this.track.append(this.group, this.cloneGroup);
             this.viewport.appendChild(this.track);
+            this.viewport.hidden = true;
             this.section.insertBefore(this.viewport, this.grid);
+
+            this.refreshMeasurements();
+            if (!this.groupWidth) {
+                this.viewport.remove();
+                return false;
+            }
+
             this.grid.remove();
             this.section.classList.add(FLOW_CLASS);
             this.section.dataset[INIT_FLAG] = "true";
+            this.viewport.hidden = false;
 
-            this.refreshMeasurements();
             window.addEventListener("resize", this.handleResize, { passive: true });
             this.start();
 
