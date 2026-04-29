@@ -97,7 +97,10 @@
             }
 
             const previousWidth = this.groupWidth;
-            this.groupWidth = this.group.getBoundingClientRect().width;
+            const rectWidth = this.group.getBoundingClientRect().width;
+            const offsetWidth = this.group.offsetWidth;
+            const scrollWidth = this.group.scrollWidth;
+            this.groupWidth = Math.max(rectWidth, offsetWidth, scrollWidth);
 
             if (!this.groupWidth) {
                 return;
