@@ -19,6 +19,8 @@
 
 .gallery-flow__track {
     display: flex;
+    position: relative;
+    left: 0;
     width: max-content;
     will-change: transform;
     transform: translate3d(0, 0, 0);

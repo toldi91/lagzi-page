@@ -20,6 +20,7 @@
             this.retryScheduled = false;
             this.refreshQueued = false;
             this.resizeObserver = null;
+            this.useLeftPosition = false;
 
             this.handleResize = this.handleResize.bind(this);
             this.handleLoad = this.handleLoad.bind(this);
@@ -47,6 +48,9 @@
 
             this.track = document.createElement("div");
             this.track.className = TRACK_CLASS;
+            const ua = navigator.userAgent || "";
+            const isIOS = /iPad|iPhone|iPod/.test(ua) || (ua.includes("Macintosh") && "ontouchend" in document);
+            this.useLeftPosition = isIOS;
 
             this.group = document.createElement("div");
             this.group.className = GROUP_CLASS;
@@ -97,10 +101,11 @@
             }
 
             const previousWidth = this.groupWidth;
+            const measuredByChildren = this.measureGroupWidth();
             const rectWidth = this.group.getBoundingClientRect().width;
             const offsetWidth = this.group.offsetWidth;
             const scrollWidth = this.group.scrollWidth;
-            this.groupWidth = Math.max(rectWidth, offsetWidth, scrollWidth);
+            this.groupWidth = measuredByChildren || Math.max(rectWidth, offsetWidth, scrollWidth);
 
             if (!this.groupWidth) {
                 return;
@@ -112,6 +117,29 @@
             if ((!previousWidth || !this.rafId) && !this.destroyed) {
                 this.start();
             }
+        }
+
+        measureGroupWidth() {
+            if (!this.group) {
+                return 0;
+            }
+
+            const cards = Array.from(this.group.children);
+            if (!cards.length) {
+                return 0;
+            }
+
+            const styles = window.getComputedStyle(this.group);
+            const gapValue = styles.columnGap || styles.gap || "0";
+            const gap = Number.parseFloat(gapValue) || 0;
+
+            const cardsWidth = cards.reduce((sum, card) => {
+                const width = card.getBoundingClientRect().width || card.offsetWidth || 0;
+                return sum + width;
+            }, 0);
+
+            const totalWidth = cardsWidth + gap * Math.max(0, cards.length - 1);
+            return totalWidth > 0 ? totalWidth : 0;
         }
 
         handleResize() {
@@ -162,7 +190,16 @@
                 return;
             }
 
+            if (this.useLeftPosition) {
+                this.track.style.transform = "none";
+                this.track.style.webkitTransform = "none";
+                this.track.style.left = `${-this.offset}px`;
+                return;
+            }
+
+            this.track.style.left = "0px";
             this.track.style.transform = `translate3d(${-this.offset}px, 0, 0)`;
+            this.track.style.webkitTransform = `translate3d(${-this.offset}px, 0, 0)`;
         }
 
         start() {
@@ -196,7 +233,10 @@
 
             const elapsed = Math.max(0, now - this.lastFrame);
             this.lastFrame = now;
-            this.offset = (this.offset + (this.speed * elapsed) / 1000) % this.groupWidth;
+            this.offset += (this.speed * elapsed) / 1000;
+            while (this.offset >= this.groupWidth) {
+                this.offset -= this.groupWidth;
+            }
             this.applyTransform();
             this.rafId = window.requestAnimationFrame(this.tick);
         }
