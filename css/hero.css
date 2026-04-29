@@ -131,25 +131,6 @@ body.i18n-ready.page-loaded .hero::after {
     }
 }
 
-@media (orientation: landscape) and (max-height: 700px) {
-    .hero {
-        padding-block: 2.5rem;
-    }
-
-    .hero::before {
-        background-position: center 58%;
-    }
-
-    .hero-content {
-        width: min(86vw, 48rem);
-    }
-
-    .hero-content h1 {
-        font-size: clamp(1.35rem, 3vw, 2.5rem);
-        letter-spacing: 0.1em;
-    }
-}
-
 @media (prefers-reduced-motion: reduce) {
     .hero::before,
     .hero::after {

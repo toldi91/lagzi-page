@@ -24,6 +24,7 @@
             this.handleResize = this.handleResize.bind(this);
             this.handleLoad = this.handleLoad.bind(this);
             this.handleObservedResize = this.handleObservedResize.bind(this);
+            this.handleVisibilityChange = this.handleVisibilityChange.bind(this);
             this.tick = this.tick.bind(this);
         }
 
@@ -79,6 +80,7 @@
             this.section.dataset[INIT_FLAG] = "true";
 
             window.addEventListener("resize", this.handleResize, { passive: true });
+            document.addEventListener("visibilitychange", this.handleVisibilityChange);
             if ("ResizeObserver" in window) {
                 this.resizeObserver = new ResizeObserver(this.handleObservedResize);
                 this.resizeObserver.observe(this.viewport);
@@ -94,6 +96,7 @@
                 return;
             }
 
+            const previousWidth = this.groupWidth;
             this.groupWidth = this.group.getBoundingClientRect().width;
 
             if (!this.groupWidth) {
@@ -102,6 +105,10 @@
 
             this.offset = this.offset % this.groupWidth;
             this.applyTransform();
+
+            if ((!previousWidth || !this.rafId) && !this.destroyed) {
+                this.start();
+            }
         }
 
         handleResize() {
@@ -119,6 +126,16 @@
 
         handleObservedResize() {
             this.queueRefresh();
+        }
+
+        handleVisibilityChange() {
+            if (this.destroyed || document.hidden) {
+                return;
+            }
+
+            this.lastFrame = performance.now();
+            this.queueRefresh();
+            this.start();
         }
 
         queueRefresh() {
@@ -162,8 +179,15 @@
         }
 
         tick(now) {
-            if (this.destroyed || !this.groupWidth) {
+            if (this.destroyed) {
                 this.rafId = 0;
+                return;
+            }
+
+            if (!this.groupWidth) {
+                this.lastFrame = now;
+                this.queueRefresh();
+                this.rafId = window.requestAnimationFrame(this.tick);
                 return;
             }
 
@@ -183,6 +207,7 @@
             }
             window.removeEventListener("resize", this.handleResize);
             window.removeEventListener("load", this.handleLoad);
+            document.removeEventListener("visibilitychange", this.handleVisibilityChange);
         }
     }
 
