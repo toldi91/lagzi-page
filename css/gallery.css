@@ -31,15 +31,6 @@
     align-items: stretch;
 }
 
-.gallery-grid {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-    justify-content: center;
-    width: 100%;
-    align-items: stretch;
-}
-
 .gallery-card {
     flex: 0 0 clamp(170px, 28vw, 290px);
     aspect-ratio: 4 / 5;

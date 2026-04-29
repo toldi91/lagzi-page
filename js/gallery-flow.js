@@ -1,6 +1,6 @@
 (() => {
     const SECTION_SELECTOR = ".gallery-section";
-    const GRID_SELECTOR = ".gallery-grid";
+    const SOURCE_SELECTOR = ".gallery-source";
     const INIT_FLAG = "galleryFlowInitialized";
     const FLOW_CLASS = "gallery-flow";
     const VIEWPORT_CLASS = "gallery-flow__viewport";
@@ -10,20 +10,22 @@
     class GalleryFlow {
         constructor(section, options = {}) {
             this.section = section;
-            this.grid = section.querySelector(GRID_SELECTOR);
+            this.source = section.querySelector(SOURCE_SELECTOR);
             this.speed = Number(options.speed ?? section.dataset.gallerySpeed ?? 60);
             this.rafId = 0;
             this.lastFrame = 0;
             this.offset = 0;
             this.groupWidth = 0;
             this.destroyed = false;
+            this.retryScheduled = false;
 
             this.handleResize = this.handleResize.bind(this);
+            this.handleLoad = this.handleLoad.bind(this);
             this.tick = this.tick.bind(this);
         }
 
         init() {
-            if (!this.section || !this.grid || this.section.dataset[INIT_FLAG] === "true") {
+            if (!this.section || !this.source || this.section.dataset[INIT_FLAG] === "true") {
                 return false;
             }
 
@@ -31,7 +33,7 @@
                 return false;
             }
 
-            const items = Array.from(this.grid.children).filter(node => node.tagName === "FIGURE");
+            const items = Array.from(this.source.content.children).filter(node => node.tagName === "FIGURE");
             if (items.length < 2) {
                 return false;
             }
@@ -45,27 +47,29 @@
             this.group = document.createElement("div");
             this.group.className = GROUP_CLASS;
 
-            this.items = items;
-            items.forEach(item => this.group.appendChild(item));
+            this.items = items.map(item => item.cloneNode(true));
+            this.items.forEach(item => this.group.appendChild(item));
 
             this.cloneGroup = this.group.cloneNode(true);
             this.cloneGroup.setAttribute("aria-hidden", "true");
 
             this.track.append(this.group, this.cloneGroup);
             this.viewport.appendChild(this.track);
-            this.viewport.hidden = true;
-            this.section.insertBefore(this.viewport, this.grid);
+            this.section.insertBefore(this.viewport, this.source);
 
             this.refreshMeasurements();
             if (!this.groupWidth) {
                 this.viewport.remove();
+                if (!this.retryScheduled) {
+                    this.retryScheduled = true;
+                    window.addEventListener("load", this.handleLoad, { once: true });
+                }
                 return false;
             }
 
-            this.grid.remove();
+            this.source.remove();
             this.section.classList.add(FLOW_CLASS);
             this.section.dataset[INIT_FLAG] = "true";
-            this.viewport.hidden = false;
 
             window.addEventListener("resize", this.handleResize, { passive: true });
             this.start();
@@ -90,6 +94,15 @@
 
         handleResize() {
             this.refreshMeasurements();
+        }
+
+        handleLoad() {
+            if (this.destroyed) {
+                return;
+            }
+
+            this.retryScheduled = false;
+            this.init();
         }
 
         applyTransform() {
@@ -133,6 +146,7 @@
             this.destroyed = true;
             this.stop();
             window.removeEventListener("resize", this.handleResize);
+            window.removeEventListener("load", this.handleLoad);
         }
     }
 
